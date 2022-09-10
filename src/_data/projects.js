@@ -9,7 +9,7 @@ module.exports = async () => {
 		);
 		// let projects = JSON.parse(projGet.data);
 
-		return projGet.data.data.attributes;
+		return projGet.data.data.map((project) => project.attributes);
 	} catch (error) {
 		console.error(error);
 	}

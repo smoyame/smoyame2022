@@ -5,7 +5,6 @@ layout: '_base.pug'
 section 
 	h2 My Projects 
 	ul
-		//- - console.log(projects.data[0].attributes.title) 
-		li #{projects.title}
-		li Item two
-		li Item three
+		each project in projects
+			li #{project.title}
+			li #{project.prompt}
