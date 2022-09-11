@@ -1,0 +1,12 @@
+---
+pagination:
+  data: projects
+  size: 1
+  alias: p
+permalink: '| projects/#{p.slug}/index.html'
+---
+
+h1 #{p.title}
+
+section.proj-header
+	p #{p.prompt}
