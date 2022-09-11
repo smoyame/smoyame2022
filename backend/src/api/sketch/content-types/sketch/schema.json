@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "sketches",
+  "info": {
+    "singularName": "sketch",
+    "pluralName": "sketches",
+    "displayName": "sketchbook"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "entry": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

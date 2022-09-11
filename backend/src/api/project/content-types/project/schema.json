@@ -17,6 +17,22 @@
     },
     "prompt": {
       "type": "string"
+    },
+    "summary": {
+      "type": "richtext"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
+    },
+    "outcomes": {
+      "type": "dynamiczone",
+      "components": ["content.media"]
+    },
+    "coverImg": {
+      "type": "component",
+      "repeatable": false,
+      "component": "content.media"
     }
   }
 }

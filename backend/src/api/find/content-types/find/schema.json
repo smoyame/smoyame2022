@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "finds",
+  "info": {
+    "singularName": "find",
+    "pluralName": "finds",
+    "displayName": "finds"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "publisher": {
+      "type": "string"
+    },
+    "author": {
+      "type": "string"
+    },
+    "link": {
+      "type": "string"
+    }
+  }
+}

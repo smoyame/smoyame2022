@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_content_medias",
+  "info": {
+    "displayName": "media",
+    "icon": "image",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "src": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images", "files", "videos", "audios"]
+    },
+    "isDynamic": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}
