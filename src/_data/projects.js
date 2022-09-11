@@ -1,5 +1,3 @@
-// import { createRequire } from "node:module";
-// const require = createRequire(import.meta.url);
 const axios = require("../../node_modules/axios");
 
 module.exports = async () => {
@@ -7,7 +5,7 @@ module.exports = async () => {
 		const projGet = await axios.get(
 			"http://localhost:1337/api/projects?populate=*"
 		);
-		// let projects = JSON.parse(projGet.data);
+		// axios delivers it as JS object already thank goodness
 
 		return projGet.data.data.map((project) => project.attributes);
 	} catch (error) {
