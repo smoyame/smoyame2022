@@ -11,6 +11,8 @@ module.exports = function (eleventyConfig) {
 		return content;
 	});
 
+	eleventyConfig.addPassthroughCopy({ "backend/public/uploads": "_assets" });
+
 	return {
 		dir: {
 			input: "src",
