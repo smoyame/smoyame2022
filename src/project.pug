@@ -1,9 +1,12 @@
 ---
+layout: '_base.pug'
 pagination:
   data: projects
   size: 1
   alias: p
 permalink: '| projects/#{p.slug}/index.html'
+eleventyComputed:
+  title: '| #{p.title}'
 ---
 
 h1 #{p.title}
