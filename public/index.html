@@ -5,23 +5,46 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/style.css" />
-    <title>SMOYA.ME |</title>
+    <title>SMOYA.ME | Designer + Hobbyist Dev</title>
   </head>
-  <body>
-    <header class="header"><span>Wow! Header! </span></header>
-    <main class="main">
-      <section>
-        <h2>My Projects</h2>
-        <ul>
-          <li>The Valivaryus</li>
-          <li>Here is our question or prompt?</li>
-          <li>EyeOn</li>
-          <li>Here is another question quick brown fox?</li>
-        </ul>
-      </section>
-    </main>
-    <footer class="footer">
-      <span>THE END is here the footer i mean</span>
-    </footer>
+  <body id="body">
+    <div class="container">
+      <header class="header">
+        <h1 class="logotype"><a href="/">smoya.me</a></h1>
+        <nav class="nav">
+          <input class="toggle-checkbox" id="toggle-nav-id" type="checkbox" />
+          <ul class="nav-wrapper">
+            <li class="nav-item"><a href="/#work">Work</a></li>
+            <li class="nav-item"><a href="/sketchbook">Sketchbook</a></li>
+            <li class="nav-item"><a href="/about">About</a></li>
+            <li class="nav-item"><a href="#finds">Finds</a></li>
+          </ul>
+          <label class="toggle-label" for="toggle-nav-id"
+            ><span class="toggle-icon"> </span
+          ></label>
+        </nav>
+      </header>
+      <main class="main">
+        <section class="section home-hero">
+          <span class="hero-text"
+            >Hi, I’m Sami! With a love for digital and social design, I strive
+            to keep giving while growing.</span
+          >
+        </section>
+        <section class="section" id="work">
+          <h2>My Projects</h2>
+          <ul>
+            <li>The Valivaryus</li>
+            <li>Here is our question or prompt?</li>
+            <li>EyeOn</li>
+            <li>Here is another question quick brown fox?</li>
+          </ul>
+        </section>
+      </main>
+      <footer class="footer">
+        <span>THE END is here the footer i mean</span>
+      </footer>
+    </div>
+    <script src="/script.js"></script>
   </body>
 </html>

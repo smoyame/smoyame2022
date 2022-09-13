@@ -1,3 +1,71 @@
+@charset "UTF-8";
+/*
+ * The Typekit service used to deliver this font or fonts for use on websites
+ * is provided by Adobe and is subject to these Terms of Use
+ * http://www.adobe.com/products/eulas/tou_typekit. For font license
+ * information, see the list below.
+ *
+ * dico-mono-script:
+ *   - http://typekit.com/eulas/00000000000000007735c4e4
+ *
+ * © 2009-2022 Adobe Systems Incorporated. All Rights Reserved.
+ */
+/*{"last_published":"2022-09-12 00:39:09 UTC"}*/
+@import url("https://p.typekit.net/p.css?s=1&k=sop2imr&ht=tk&f=45648&a=5108939&app=typekit&e=css");
+@font-face {
+  font-family: "Dico Mono Script";
+  src: url("https://use.typekit.net/af/c37c7e/00000000000000007735c4e4/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("woff2"), url("https://use.typekit.net/af/c37c7e/00000000000000007735c4e4/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("woff"), url("https://use.typekit.net/af/c37c7e/00000000000000007735c4e4/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("opentype");
+  font-display: auto;
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: normal;
+}
+.tk-dico-mono-script {
+  font-family: "Dico Mono Script", mono;
+}
+
+/* Neuething Sans */
+@font-face {
+  font-family: "Neuething Sans Semi-expanded";
+  src: url("/_assets/fonts/NeuethingSans-RegularSemiExpanded.woff2") format("woff2");
+  font-display: auto;
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: normal;
+}
+@font-face {
+  font-family: "Neuething Sans Semi-expanded";
+  src: url("/_assets/fonts/NeuethingSans-SemiBoldSemiExpanded.woff2") format("woff2");
+  font-display: auto;
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: normal;
+}
+@font-face {
+  font-family: "Neuething Sans Semi-expanded";
+  src: url("/_assets/fonts/NeuethingSans-BoldSemiExpanded.woff2") format("woff2");
+  font-display: auto;
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: normal;
+}
+@font-face {
+  font-family: "Neuething Sans Semi-expanded";
+  src: url("/_assets/fonts/NeuethingSans-EtraBoldSemiExpanded.woff2") format("woff2");
+  font-display: auto;
+  font-style: normal;
+  font-weight: 800;
+  font-stretch: normal;
+}
+/* PP Editorial New */
+@font-face {
+  font-family: "PP Editorial New";
+  src: url("/_assets/fonts/PPEditorialNew-Regular.woff2") format("woff2");
+  font-display: auto;
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: normal;
+}
 *,
 *::before,
 *::after {
@@ -12,7 +80,8 @@ img,
 picture,
 video,
 canvas,
-svg {
+svg,
+li {
   display: block;
   max-width: 100%;
 }
@@ -22,4 +91,197 @@ button,
 textarea,
 select {
   font: inherit;
+}
+
+/***** Custom Class Dependent *****/
+.logotype a,
+.nav-item a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.nav ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.nav-item,
+.logotype {
+  line-height: 1;
+}
+
+.nav-item a {
+  display: block;
+}
+
+* {
+  font-size: clamp(16.5px, 8px + 1.5vw, 22px);
+}
+
+body {
+  font-family: "Neuething Sans Semi-expanded", Poppins, Helvetica, Arial, sans-serif;
+  color: hsl(238deg, 42%, 88%);
+  background: hsl(240deg, 8%, 22%);
+  line-height: 1.6;
+  letter-spacing: 0.025em;
+}
+
+.container {
+  padding: calc(clamp(16.5px, 8px + 1.5vw, 22px) + 0.25rem) clamp(16.5px, 8px + 1.5vw, 22px) clamp(16.5px, 8px + 1.5vw, 22px) clamp(16.5px, 8px + 1.5vw, 22px);
+}
+
+.section {
+  min-height: 40vh;
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+.logotype a,
+.nav-item a {
+  text-transform: uppercase;
+}
+
+.nav {
+  position: fixed;
+  bottom: clamp(16.5px, 8px + 1.5vw, 22px);
+  right: clamp(16.5px, 8px + 1.5vw, 22px);
+  left: clamp(16.5px, 8px + 1.5vw, 22px);
+  width: auto;
+  pointer-events: none;
+}
+
+.nav-wrapper {
+  pointer-events: none;
+}
+.nav-wrapper :nth-child(1) {
+  transition-delay: 100ms;
+}
+.nav-wrapper :nth-child(2) {
+  transition-delay: 200ms;
+}
+.nav-wrapper :nth-child(3) {
+  transition-delay: 300ms;
+}
+.nav-wrapper :nth-child(4) {
+  transition-delay: 400ms;
+}
+
+.nav-wrapper::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: hsl(240deg, 8%, 22%);
+  opacity: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -5;
+  pointer-events: none;
+  transition: 300ms cubic-bezier(0.6, 0.04, 0.98, 0.335);
+}
+
+.toggle-checkbox:checked + .nav-wrapper::after {
+  opacity: 0.75;
+}
+
+.toggle-checkbox {
+  display: none;
+  overflow: hidden;
+}
+
+.toggle-checkbox:checked ~ .nav-wrapper .nav-item {
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+          clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  opacity: 1;
+  pointer-events: initial;
+}
+
+.toggle-checkbox:checked ~ .list-contain .nav-item {
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+          clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  opacity: 1;
+  pointer-events: initial;
+}
+
+.toggle-label {
+  pointer-events: auto;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0.75rem 0.75rem 0.75rem 0.74rem;
+  background: hsl(238deg, 42%, 88%);
+  border: 1px solid hsl(240deg, 8%, 22%);
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.5rem;
+  margin-left: auto;
+}
+
+.toggle-icon,
+.toggle-icon::before,
+.toggle-icon::after {
+  display: block;
+  background: hsl(240deg, 8%, 22%);
+  width: 100%;
+  height: 2px;
+  position: relative;
+  transition: transform 300ms ease-in-out;
+}
+
+.toggle-icon {
+  top: 0.05rem;
+}
+
+.toggle-icon::before,
+.toggle-icon::after {
+  content: "";
+  position: absolute;
+}
+
+.toggle-icon::before {
+  top: 0.5rem;
+}
+
+.toggle-icon::after {
+  bottom: 0.5rem;
+}
+
+.toggle-checkbox:checked ~ .toggle-label .toggle-icon {
+  transform: translateX(250%);
+}
+.toggle-checkbox:checked ~ .toggle-label .toggle-icon:before {
+  transform: translate(-250%, -0.5rem) rotate(-45deg);
+}
+.toggle-checkbox:checked ~ .toggle-label .toggle-icon:after {
+  transform: translate(-250%, 0.47rem) rotate(45deg);
+}
+
+.nav-item {
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  background: hsl(238deg, 42%, 88%);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  -webkit-clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
+          clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
+  opacity: 0;
+  transition: all 750ms cubic-bezier(0, 0.75, 0.25, 1);
+}
+
+.nav-item a {
+  pointer-events: auto;
+  display: block;
+  padding: 1rem clamp(16.5px, 8px + 1.5vw, 22px) 0.65rem clamp(16.5px, 8px + 1.5vw, 22px);
+  color: hsl(240deg, 8%, 22%);
+}
+.nav-item a:hover {
+  text-decoration: underline;
+}
+
+.section {
+  min-height: 60vh;
 }/*# sourceMappingURL=style.css.map */

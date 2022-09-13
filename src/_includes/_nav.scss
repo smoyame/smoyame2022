@@ -1,58 +1,3 @@
-@use "_includes/fonts";
-@use "_includes/reset";
-
-$primary-font: "Neuething Sans Semi-expanded", Poppins, Helvetica, Arial,
-	sans-serif;
-$secondary-font: "PP Editorial New", "Playfair Display", Georgia, Times, serif;
-$tertiary-font: "Dico Mono Script", "Courier New", Courier, monospace;
-
-$main-bright: hsl(238, 42%, 88%);
-$main-pensive: hsl(176, 69%, 18%);
-$main-poder: hsl(216, 100%, 33%);
-$main-vibing: hsl(268, 95%, 77%);
-$main-alertness: hsl(3, 100%, 69%);
-$main-disfruta: hsl(335, 100%, 73%);
-$main-zesty: hsl(48, 100%, 72%);
-$main-dark: hsl(240, 8%, 22%);
-
-$foreground-color: $main-bright;
-$background-color: $main-dark;
-
-$fontsize-base: clamp(16.5px, calc(8px + 1.5vw), 22px);
-
-$unit: $fontsize-base;
-
-$primary-ease: cubic-bezier(0.6, 0.04, 0.98, 0.335);
-
-* {
-	font-size: $fontsize-base;
-}
-
-body {
-	font-family: $primary-font;
-	color: $foreground-color;
-	background: $background-color;
-	line-height: 1.6;
-	letter-spacing: 0.025em;
-}
-
-.container {
-	padding: calc($unit + 0.25rem) $unit $unit $unit;
-}
-
-.section {
-	min-height: 40vh;
-}
-// Utilities
-
-.no-scroll {
-	overflow: hidden;
-}
-
-// ***** Header ***** //
-
-// ** NAV ** //
-
 .logotype a,
 .nav-item a {
 	text-transform: uppercase;
@@ -92,6 +37,7 @@ body {
 	display: block;
 	width: 100%;
 	height: 100%;
+	outline: 1px solid red;
 	background-color: $background-color;
 	// initial opac on default state of input-checkbox
 	opacity: 0;
@@ -140,7 +86,7 @@ $label-size: 3rem;
 	border: 1px solid $main-dark;
 	width: $label-size;
 	height: $label-size;
-	border-radius: 0.5rem;
+	border-radius: 50%;
 	// left, right, or center menu icon within entire wrapper with margin
 	margin-left: auto;
 }
@@ -192,7 +138,7 @@ $line-translate-size: 250%;
 
 		&:after {
 			// background: $main-bright;
-			transform: translate(-$line-translate-size, 0.47rem) rotate(45deg);
+			transform: translate(-$line-translate-size, 0.505rem) rotate(45deg);
 			// transform-origin: left;
 		}
 	}
@@ -219,51 +165,4 @@ $line-translate-size: 250%;
 	&:hover {
 		text-decoration: underline;
 	}
-}
-
-// // DESKTOP BASED
-// .header {
-// 	display: flex;
-// 	justify-content: space-between;
-// }
-
-// .logotype a {
-// 	font-weight: 800;
-// 	// font-kerning: auto;
-// }
-
-// .nav-item a {
-// 	padding-bottom: 0.28rem;
-// }
-
-// .nav-item a::after {
-// 	content: "\2197";
-// 	display: inline-block;
-// 	opacity: 0;
-// 	margin-left: 0.5rem;
-// 	// for adjusting relative size;
-// 	font-family: $secondary-font;
-// 	font-size: 1.4rem;
-// 	font-weight: 300;
-// 	line-height: 0.2;
-// 	transition: 100ms $primary-ease;
-// }
-
-// .nav-item a:hover::after {
-// 	opacity: 1;
-// }
-
-// .nav-item:not(:first-of-type) a {
-// 	padding-top: 0.5rem;
-// 	border-top: 2px solid $foreground-color;
-// }
-
-// .nav-item:last-of-type a {
-// 	border-bottom: 2px solid $foreground-color;
-// }
-
-// ***** Sections ***** //
-
-.section {
-	min-height: 60vh;
 }

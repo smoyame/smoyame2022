@@ -2,6 +2,7 @@ const prettier = require("./node_modules/prettier");
 
 module.exports = function (eleventyConfig) {
 	eleventyConfig.addPassthroughCopy("src/style.css");
+	eleventyConfig.addPassthroughCopy("src/script.js");
 
 	// prettify compiled *.html documents in output directory
 	eleventyConfig.addTransform("prettier", (content, outputPath) => {
@@ -12,6 +13,7 @@ module.exports = function (eleventyConfig) {
 	});
 
 	eleventyConfig.addPassthroughCopy({ "backend/public/uploads": "_assets" });
+	eleventyConfig.addPassthroughCopy("_assets/fonts");
 
 	return {
 		dir: {
