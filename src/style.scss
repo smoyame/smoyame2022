@@ -28,6 +28,10 @@ $primary-ease: cubic-bezier(0.6, 0.04, 0.98, 0.335);
 	font-size: $fontsize-base;
 }
 
+html {
+	scroll-behavior: smooth;
+}
+
 body {
 	font-family: $primary-font;
 	color: $foreground-color;
@@ -69,6 +73,7 @@ body {
 
 .nav-wrapper {
 	pointer-events: none;
+	margin-bottom: calc($unit * 1.5);
 	:nth-child(1) {
 		transition-delay: 100ms;
 	}
@@ -92,20 +97,21 @@ body {
 	display: block;
 	width: 100%;
 	height: 100%;
-	background-color: $background-color;
+	// background-color: $background-color;
 	// initial opac on default state of input-checkbox
 	opacity: 0;
 	// take up screen behind nav
 	position: fixed;
 	top: 0;
 	left: 0;
-	z-index: -5;
+	z-index: -1;
+	backdrop-filter: blur(20px);
 	pointer-events: none;
 	transition: 300ms $primary-ease;
 }
 
 .toggle-checkbox:checked + .nav-wrapper::after {
-	opacity: 0.75;
+	opacity: 1;
 }
 
 .toggle-checkbox {
@@ -115,6 +121,7 @@ body {
 
 .toggle-checkbox:checked ~ .nav-wrapper .nav-item {
 	clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+	transform: translateY(0%);
 	opacity: 1;
 	pointer-events: initial;
 }
@@ -136,20 +143,23 @@ $label-size: 3rem;
 	flex-direction: column;
 	justify-content: center;
 	padding: 0.75rem 0.75rem 0.75rem 0.74rem;
-	background: $main-bright;
-	border: 1px solid $main-dark;
+	background: $background-color;
+	border: 1px solid $foreground-color;
 	width: $label-size;
 	height: $label-size;
 	border-radius: 0.5rem;
 	// left, right, or center menu icon within entire wrapper with margin
 	margin-left: auto;
+	// to fix layering
+	position: relative;
+	z-index: 100;
 }
 
 .toggle-icon,
 .toggle-icon::before,
 .toggle-icon::after {
 	display: block;
-	background: $main-dark;
+	background: $foreground-color;
 	width: 100%;
 	height: 2px;
 	position: relative;
@@ -200,22 +210,22 @@ $line-translate-size: 250%;
 
 .nav-item {
 	text-transform: uppercase;
-	margin-bottom: 0.5rem;
-	background: $main-bright;
-	border-radius: 0.5rem;
-	overflow: hidden;
+	background: $background-color;
 	// default state when hidden... animates on check
-	clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
+	clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
+	transform: translateY(100%);
 	opacity: 0;
+	// z-index: 100;
 	transition: all 750ms cubic-bezier(0, 0.75, 0.25, 1);
 }
 
 .nav-item a {
 	pointer-events: auto;
 	display: block;
-	padding: 1rem $unit 0.65rem $unit;
-	color: $main-dark;
-
+	padding-block: 1rem 0.65rem;
+	color: $foreground-color;
+	border-bottom: 2px solid $foreground-color;
+	z-index: 100;
 	&:hover {
 		text-decoration: underline;
 	}

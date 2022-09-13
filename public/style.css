@@ -118,6 +118,10 @@ select {
   font-size: clamp(16.5px, 8px + 1.5vw, 22px);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: "Neuething Sans Semi-expanded", Poppins, Helvetica, Arial, sans-serif;
   color: hsl(238deg, 42%, 88%);
@@ -154,6 +158,7 @@ body {
 
 .nav-wrapper {
   pointer-events: none;
+  margin-bottom: calc(clamp(16.5px, 8px + 1.5vw, 22px) * 1.5);
 }
 .nav-wrapper :nth-child(1) {
   transition-delay: 100ms;
@@ -173,18 +178,19 @@ body {
   display: block;
   width: 100%;
   height: 100%;
-  background-color: hsl(240deg, 8%, 22%);
   opacity: 0;
   position: fixed;
   top: 0;
   left: 0;
-  z-index: -5;
+  z-index: -1;
+  -webkit-backdrop-filter: blur(20px);
+          backdrop-filter: blur(20px);
   pointer-events: none;
   transition: 300ms cubic-bezier(0.6, 0.04, 0.98, 0.335);
 }
 
 .toggle-checkbox:checked + .nav-wrapper::after {
-  opacity: 0.75;
+  opacity: 1;
 }
 
 .toggle-checkbox {
@@ -195,6 +201,7 @@ body {
 .toggle-checkbox:checked ~ .nav-wrapper .nav-item {
   -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
           clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  transform: translateY(0%);
   opacity: 1;
   pointer-events: initial;
 }
@@ -213,19 +220,21 @@ body {
   flex-direction: column;
   justify-content: center;
   padding: 0.75rem 0.75rem 0.75rem 0.74rem;
-  background: hsl(238deg, 42%, 88%);
-  border: 1px solid hsl(240deg, 8%, 22%);
+  background: hsl(240deg, 8%, 22%);
+  border: 1px solid hsl(238deg, 42%, 88%);
   width: 3rem;
   height: 3rem;
   border-radius: 0.5rem;
   margin-left: auto;
+  position: relative;
+  z-index: 100;
 }
 
 .toggle-icon,
 .toggle-icon::before,
 .toggle-icon::after {
   display: block;
-  background: hsl(240deg, 8%, 22%);
+  background: hsl(238deg, 42%, 88%);
   width: 100%;
   height: 2px;
   position: relative;
@@ -262,12 +271,10 @@ body {
 
 .nav-item {
   text-transform: uppercase;
-  margin-bottom: 0.5rem;
-  background: hsl(238deg, 42%, 88%);
-  border-radius: 0.5rem;
-  overflow: hidden;
-  -webkit-clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
-          clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
+  background: hsl(240deg, 8%, 22%);
+  -webkit-clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
+          clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
+  transform: translateY(100%);
   opacity: 0;
   transition: all 750ms cubic-bezier(0, 0.75, 0.25, 1);
 }
@@ -275,8 +282,10 @@ body {
 .nav-item a {
   pointer-events: auto;
   display: block;
-  padding: 1rem clamp(16.5px, 8px + 1.5vw, 22px) 0.65rem clamp(16.5px, 8px + 1.5vw, 22px);
-  color: hsl(240deg, 8%, 22%);
+  padding-block: 1rem 0.65rem;
+  color: hsl(238deg, 42%, 88%);
+  border-bottom: 2px solid hsl(238deg, 42%, 88%);
+  z-index: 100;
 }
 .nav-item a:hover {
   text-decoration: underline;
