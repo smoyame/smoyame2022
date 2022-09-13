@@ -14,7 +14,7 @@
 @import url("https://p.typekit.net/p.css?s=1&k=sop2imr&ht=tk&f=45648&a=5108939&app=typekit&e=css");
 
 @font-face {
-	font-family: "dico-mono-script";
+	font-family: "Dico Mono Script";
 	src: url("https://use.typekit.net/af/c37c7e/00000000000000007735c4e4/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3")
 			format("woff2"),
 		url("https://use.typekit.net/af/c37c7e/00000000000000007735c4e4/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3")
@@ -28,7 +28,58 @@
 }
 
 .tk-dico-mono-script {
-	font-family: "dico-mono-script", mono;
+	font-family: "Dico Mono Script", mono;
 }
 
 /* Neuething Sans */
+
+@font-face {
+	font-family: "Neuething Sans Semi-expanded";
+	src: url("/_assets/fonts/NeuethingSans-RegularSemiExpanded.woff2")
+		format("woff2");
+	font-display: auto;
+	font-style: normal;
+	font-weight: 400;
+	font-stretch: normal;
+}
+
+@font-face {
+	font-family: "Neuething Sans Semi-expanded";
+	src: url("/_assets/fonts/NeuethingSans-SemiBoldSemiExpanded.woff2")
+		format("woff2");
+	font-display: auto;
+	font-style: normal;
+	font-weight: 600;
+	font-stretch: normal;
+}
+
+@font-face {
+	font-family: "Neuething Sans Semi-expanded";
+	src: url("/_assets/fonts/NeuethingSans-BoldSemiExpanded.woff2")
+		format("woff2");
+	font-display: auto;
+	font-style: normal;
+	font-weight: 700;
+	font-stretch: normal;
+}
+
+@font-face {
+	font-family: "Neuething Sans Semi-expanded";
+	src: url("/_assets/fonts/NeuethingSans-EtraBoldSemiExpanded.woff2")
+		format("woff2");
+	font-display: auto;
+	font-style: normal;
+	font-weight: 800;
+	font-stretch: normal;
+}
+
+/* PP Editorial New */
+
+@font-face {
+	font-family: "PP Editorial New";
+	src: url("/_assets/fonts/PPEditorialNew-Regular.woff2") format("woff2");
+	font-display: auto;
+	font-style: normal;
+	font-weight: 400;
+	font-stretch: normal;
+}
