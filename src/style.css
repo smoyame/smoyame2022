@@ -76,6 +76,12 @@
   margin: 0;
 }
 
+h1,
+h2,
+h3 {
+  display: inline-block;
+}
+
 img,
 picture,
 video,
@@ -115,7 +121,29 @@ select {
 }
 
 * {
-  font-size: clamp(16.5px, 8px + 1.5vw, 22px);
+  --primary-font: "Neuething Sans Semi-expanded", Poppins, Helvetica, Arial,
+  	sans-serif;
+  --secondary-font: "PP Editorial New", "Playfair Display", Cambria, Cochin,
+  	Georgia, Times, "Times New Roman", serif;
+  --tertiary-font: "Dico Mono Script", "Courier New", Courier, monospace;
+  --main-bright: hsl(238, 42%, 88%);
+  --main-pensive: hsl(176, 69%, 18%);
+  --main-poder: hsl(216, 100%, 33%);
+  --main-vibing: hsl(268, 95%, 77%);
+  --main-alertness: hsl(3, 100%, 69%);
+  --main-disfruta: hsl(335, 100%, 73%);
+  --main-zesty: hsl(48, 100%, 72%);
+  --main-dark: hsl(240, 8%, 22%);
+  --foreground-color: var(--main-bright);
+  --background-color: var(--main-dark);
+  --fontsize-base: clamp(16.5px, calc(8px + 1.5vw), 22px);
+  --fontsize-b: clamp(2.55rem, 5.78vw, 7rem);
+  --fontsize-h3: clamp(1.75rem, 3.8vw, 3.6rem);
+  --unit: var(--fontsize-base);
+  --primary-ease: cubic-bezier(0.6, 0.04, 0.98, 0.335);
+  --line-translate-size: 250%;
+  --label-size: 3rem;
+  font-size: var(--fontsize-base);
 }
 
 html {
@@ -123,15 +151,21 @@ html {
 }
 
 body {
-  font-family: "Neuething Sans Semi-expanded", Poppins, Helvetica, Arial, sans-serif;
-  color: hsl(238deg, 42%, 88%);
-  background: hsl(240deg, 8%, 22%);
+  font-family: var(--primary-font);
+  color: var(--foreground-color);
+  background: var(--background-color);
   line-height: 1.6;
   letter-spacing: 0.025em;
 }
 
-.container {
-  padding: calc(clamp(16.5px, 8px + 1.5vw, 22px) + 0.25rem) clamp(16.5px, 8px + 1.5vw, 22px) clamp(16.5px, 8px + 1.5vw, 22px) clamp(16.5px, 8px + 1.5vw, 22px);
+.header,
+.section,
+.footer {
+  padding-inline: var(--unit);
+}
+
+.header {
+  padding-top: calc(var(--unit) + 0.3rem);
 }
 
 .section {
@@ -142,6 +176,10 @@ body {
   overflow: hidden;
 }
 
+.logotype {
+  position: fixed;
+}
+
 .logotype a,
 .nav-item a {
   text-transform: uppercase;
@@ -149,16 +187,16 @@ body {
 
 .nav {
   position: fixed;
-  bottom: clamp(16.5px, 8px + 1.5vw, 22px);
-  right: clamp(16.5px, 8px + 1.5vw, 22px);
-  left: clamp(16.5px, 8px + 1.5vw, 22px);
+  bottom: var(--unit);
+  right: var(--unit);
+  left: var(--unit);
   width: auto;
   pointer-events: none;
 }
 
 .nav-wrapper {
   pointer-events: none;
-  margin-bottom: calc(clamp(16.5px, 8px + 1.5vw, 22px) * 1.5);
+  margin-bottom: calc(var(--unit) * 1.5);
 }
 .nav-wrapper :nth-child(1) {
   transition-delay: 100ms;
@@ -182,15 +220,34 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: -1;
-  -webkit-backdrop-filter: blur(20px);
-          backdrop-filter: blur(20px);
+  z-index: -10;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
   pointer-events: none;
-  transition: 300ms cubic-bezier(0.6, 0.04, 0.98, 0.335);
+  transition: 300ms ease-in;
+}
+
+.nav-wrapper::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: var(--background-color);
+  opacity: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -5;
+  pointer-events: none;
+  transition: 300ms ease-in;
 }
 
 .toggle-checkbox:checked + .nav-wrapper::after {
   opacity: 1;
+}
+
+.toggle-checkbox:checked + .nav-wrapper::before {
+  opacity: 0.8;
 }
 
 .toggle-checkbox {
@@ -220,10 +277,10 @@ body {
   flex-direction: column;
   justify-content: center;
   padding: 0.75rem 0.75rem 0.75rem 0.74rem;
-  background: hsl(240deg, 8%, 22%);
-  border: 1px solid hsl(238deg, 42%, 88%);
-  width: 3rem;
-  height: 3rem;
+  background: var(--background-color);
+  border: 1px solid var(--foreground-color);
+  width: var(--label-size);
+  height: var(--label-size);
   border-radius: 0.5rem;
   margin-left: auto;
   position: relative;
@@ -234,7 +291,7 @@ body {
 .toggle-icon::before,
 .toggle-icon::after {
   display: block;
-  background: hsl(238deg, 42%, 88%);
+  background: var(--foreground-color);
   width: 100%;
   height: 2px;
   position: relative;
@@ -260,35 +317,56 @@ body {
 }
 
 .toggle-checkbox:checked ~ .toggle-label .toggle-icon {
-  transform: translateX(250%);
+  transform: translateX(var(--line-translate-size));
 }
 .toggle-checkbox:checked ~ .toggle-label .toggle-icon:before {
-  transform: translate(-250%, -0.5rem) rotate(-45deg);
+  transform: translate(calc(-1 * var(--line-translate-size)), -0.5rem) rotate(-45deg);
 }
 .toggle-checkbox:checked ~ .toggle-label .toggle-icon:after {
-  transform: translate(-250%, 0.47rem) rotate(45deg);
+  transform: translate(calc(-1 * var(--line-translate-size)), 0.47rem) rotate(45deg);
 }
 
 .nav-item {
   text-transform: uppercase;
-  background: hsl(240deg, 8%, 22%);
   -webkit-clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
           clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
-  transform: translateY(100%);
+  transform: translateY(40%);
   opacity: 0;
-  transition: all 750ms cubic-bezier(0, 0.75, 0.25, 1);
+  transition: all 600ms cubic-bezier(0, 0.75, 0.25, 1);
 }
 
 .nav-item a {
   pointer-events: auto;
   display: block;
   padding-block: 1rem 0.65rem;
-  color: hsl(238deg, 42%, 88%);
-  border-bottom: 2px solid hsl(238deg, 42%, 88%);
+  color: var(--foreground-color);
+  border-bottom: 2px solid var(--foreground-color);
   z-index: 100;
 }
 .nav-item a:hover {
   text-decoration: underline;
+}
+
+h2 {
+  font-size: var(--fontsize-b);
+  font-weight: 600;
+}
+
+.work {
+  scroll-margin-top: 6rem;
+  --background-color: var(--main-vibing);
+  --foreground-color: var(--main-dark);
+  background-color: var(--background-color);
+  color: var(--foreground-color);
+}
+
+.proj-card-title {
+  font-family: var(--secondary-font);
+  font-weight: 300;
+  font-size: var(--fontsize-h3);
+  padding: 0.6rem 0.5rem 0.25rem 0.5rem;
+  border: 2px solid var(--main-dark);
+  min-width: 100%;
 }
 
 .section {

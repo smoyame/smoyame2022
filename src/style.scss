@@ -1,31 +1,37 @@
 @use "_includes/fonts";
 @use "_includes/reset";
 
-$primary-font: "Neuething Sans Semi-expanded", Poppins, Helvetica, Arial,
-	sans-serif;
-$secondary-font: "PP Editorial New", "Playfair Display", Georgia, Times, serif;
-$tertiary-font: "Dico Mono Script", "Courier New", Courier, monospace;
-
-$main-bright: hsl(238, 42%, 88%);
-$main-pensive: hsl(176, 69%, 18%);
-$main-poder: hsl(216, 100%, 33%);
-$main-vibing: hsl(268, 95%, 77%);
-$main-alertness: hsl(3, 100%, 69%);
-$main-disfruta: hsl(335, 100%, 73%);
-$main-zesty: hsl(48, 100%, 72%);
-$main-dark: hsl(240, 8%, 22%);
-
-$foreground-color: $main-bright;
-$background-color: $main-dark;
-
-$fontsize-base: clamp(16.5px, calc(8px + 1.5vw), 22px);
-
-$unit: $fontsize-base;
-
-$primary-ease: cubic-bezier(0.6, 0.04, 0.98, 0.335);
-
 * {
-	font-size: $fontsize-base;
+	// Global Variables
+	--primary-font: "Neuething Sans Semi-expanded", Poppins, Helvetica, Arial,
+		sans-serif;
+	--secondary-font: "PP Editorial New", "Playfair Display", Cambria, Cochin,
+		Georgia, Times, "Times New Roman", serif;
+	--tertiary-font: "Dico Mono Script", "Courier New", Courier, monospace;
+
+	--main-bright: hsl(238, 42%, 88%);
+	--main-pensive: hsl(176, 69%, 18%);
+	--main-poder: hsl(216, 100%, 33%);
+	--main-vibing: hsl(268, 95%, 77%);
+	--main-alertness: hsl(3, 100%, 69%);
+	--main-disfruta: hsl(335, 100%, 73%);
+	--main-zesty: hsl(48, 100%, 72%);
+	--main-dark: hsl(240, 8%, 22%);
+
+	--foreground-color: var(--main-bright);
+	--background-color: var(--main-dark);
+
+	--fontsize-base: clamp(16.5px, calc(8px + 1.5vw), 22px);
+	--fontsize-b: clamp(2.55rem, 5.78vw, 7rem);
+	--fontsize-h3: clamp(1.75rem, 3.8vw, 3.6rem);
+
+	--unit: var(--fontsize-base);
+
+	--primary-ease: cubic-bezier(0.6, 0.04, 0.98, 0.335);
+	--line-translate-size: 250%;
+	--label-size: 3rem;
+	// Actual base settings
+	font-size: var(--fontsize-base);
 }
 
 html {
@@ -33,15 +39,21 @@ html {
 }
 
 body {
-	font-family: $primary-font;
-	color: $foreground-color;
-	background: $background-color;
+	font-family: var(--primary-font);
+	color: var(--foreground-color);
+	background: var(--background-color);
 	line-height: 1.6;
 	letter-spacing: 0.025em;
 }
 
-.container {
-	padding: calc($unit + 0.25rem) $unit $unit $unit;
+.header,
+.section,
+.footer {
+	padding-inline: var(--unit);
+}
+
+.header {
+	padding-top: calc(var(--unit) + 0.3rem);
 }
 
 .section {
@@ -55,6 +67,10 @@ body {
 
 // ***** Header ***** //
 
+.logotype {
+	position: fixed;
+}
+
 // ** NAV ** //
 
 .logotype a,
@@ -64,16 +80,16 @@ body {
 
 .nav {
 	position: fixed;
-	bottom: $unit;
-	right: $unit;
-	left: $unit;
+	bottom: var(--unit);
+	right: var(--unit);
+	left: var(--unit);
 	width: auto;
 	pointer-events: none;
 }
 
 .nav-wrapper {
 	pointer-events: none;
-	margin-bottom: calc($unit * 1.5);
+	margin-bottom: calc(var(--unit) * 1.5);
 	:nth-child(1) {
 		transition-delay: 100ms;
 	}
@@ -97,21 +113,44 @@ body {
 	display: block;
 	width: 100%;
 	height: 100%;
-	// background-color: $background-color;
+	// background-color: var(--background-color);
 	// initial opac on default state of input-checkbox
 	opacity: 0;
 	// take up screen behind nav
 	position: fixed;
 	top: 0;
 	left: 0;
-	z-index: -1;
-	backdrop-filter: blur(20px);
+	z-index: -10;
+	backdrop-filter: blur(10px);
 	pointer-events: none;
-	transition: 300ms $primary-ease;
+	transition: 300ms ease-in;
+}
+
+.nav-wrapper::before {
+	// the dimming of the background
+	content: "";
+	display: block;
+	width: 100%;
+	height: 100%;
+	background-color: var(--background-color);
+	// initial opac on default state of input-checkbox
+	opacity: 0;
+	// take up screen behind nav
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: -5;
+	pointer-events: none;
+	transition: 300ms ease-in;
 }
 
 .toggle-checkbox:checked + .nav-wrapper::after {
 	opacity: 1;
+}
+
+.toggle-checkbox:checked + .nav-wrapper::before {
+	opacity: 0.8;
+	// background-color: pink;
 }
 
 .toggle-checkbox {
@@ -134,8 +173,6 @@ body {
 	}
 }
 
-$label-size: 3rem;
-
 .toggle-label {
 	pointer-events: auto;
 	cursor: pointer;
@@ -143,10 +180,10 @@ $label-size: 3rem;
 	flex-direction: column;
 	justify-content: center;
 	padding: 0.75rem 0.75rem 0.75rem 0.74rem;
-	background: $background-color;
-	border: 1px solid $foreground-color;
-	width: $label-size;
-	height: $label-size;
+	background: var(--background-color);
+	border: 1px solid var(--foreground-color);
+	width: var(--label-size);
+	height: var(--label-size);
 	border-radius: 0.5rem;
 	// left, right, or center menu icon within entire wrapper with margin
 	margin-left: auto;
@@ -159,7 +196,7 @@ $label-size: 3rem;
 .toggle-icon::before,
 .toggle-icon::after {
 	display: block;
-	background: $foreground-color;
+	background: var(--foreground-color);
 	width: 100%;
 	height: 2px;
 	position: relative;
@@ -184,25 +221,25 @@ $label-size: 3rem;
 	bottom: 0.5rem;
 }
 
-$line-translate-size: 250%;
-
 .toggle-checkbox:checked ~ .toggle-label {
 	// background: $main-dark;
 
 	.toggle-icon {
 		// opacity: 0;
-		// background: $main-bright;
-		transform: translateX($line-translate-size);
+		// background: var(--main-bright);
+		transform: translateX(var(--line-translate-size));
 
 		&:before {
-			// background: $main-bright;
-			transform: translate(-$line-translate-size, -0.5rem) rotate(-45deg);
+			// background: var(--main-bright);
+			transform: translate(calc(-1 * var(--line-translate-size)), -0.5rem)
+				rotate(-45deg);
 			// transform-origin: left;
 		}
 
 		&:after {
-			// background: $main-bright;
-			transform: translate(-$line-translate-size, 0.47rem) rotate(45deg);
+			// background: var(--main-bright);
+			transform: translate(calc(-1 * var(--line-translate-size)), 0.47rem)
+				rotate(45deg);
 			// transform-origin: left;
 		}
 	}
@@ -210,25 +247,49 @@ $line-translate-size: 250%;
 
 .nav-item {
 	text-transform: uppercase;
-	background: $background-color;
 	// default state when hidden... animates on check
 	clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
-	transform: translateY(100%);
+	transform: translateY(40%);
 	opacity: 0;
-	// z-index: 100;
-	transition: all 750ms cubic-bezier(0, 0.75, 0.25, 1);
+	transition: all 600ms cubic-bezier(0, 0.75, 0.25, 1);
 }
 
 .nav-item a {
 	pointer-events: auto;
 	display: block;
 	padding-block: 1rem 0.65rem;
-	color: $foreground-color;
-	border-bottom: 2px solid $foreground-color;
+	color: var(--foreground-color);
+	border-bottom: 2px solid var(--foreground-color);
 	z-index: 100;
 	&:hover {
 		text-decoration: underline;
 	}
+}
+
+// ***** Main Content ***** //
+
+h2 {
+	font-size: var(--fontsize-b);
+	font-weight: 600;
+}
+
+//  project section on home
+
+.work {
+	scroll-margin-top: 6rem;
+	--background-color: var(--main-vibing);
+	--foreground-color: var(--main-dark);
+	background-color: var(--background-color);
+	color: var(--foreground-color);
+}
+
+.proj-card-title {
+	font-family: var(--secondary-font);
+	font-weight: 300;
+	font-size: var(--fontsize-h3);
+	padding: 0.6rem 0.5rem 0.25rem 0.5rem;
+	border: 2px solid var(--main-dark);
+	min-width: 100%;
 }
 
 // // DESKTOP BASED
@@ -252,7 +313,7 @@ $line-translate-size: 250%;
 // 	opacity: 0;
 // 	margin-left: 0.5rem;
 // 	// for adjusting relative size;
-// 	font-family: $secondary-font;
+// 	font-family: var(--secondary-font);
 // 	font-size: 1.4rem;
 // 	font-weight: 300;
 // 	line-height: 0.2;
@@ -265,11 +326,11 @@ $line-translate-size: 250%;
 
 // .nav-item:not(:first-of-type) a {
 // 	padding-top: 0.5rem;
-// 	border-top: 2px solid $foreground-color;
+// 	border-top: 2px solid var(--foreground-color);
 // }
 
 // .nav-item:last-of-type a {
-// 	border-bottom: 2px solid $foreground-color;
+// 	border-bottom: 2px solid var(--foreground-color);
 // }
 
 // ***** Sections ***** //
