@@ -3,11 +3,22 @@ title: Designer + Hobbyist Dev
 layout: '_base.pug'
 ---
 
-section.section.home-hero
+section.section.hero-home
 	span.hero-text #{homepage.intro}
-section.section#work 
-	h2 My Projects 
-	ul
-		each project in projects
-			li #{project.title}
-			li #{project.prompt}
+section.section.work#work 
+	h2 My work
+	each project in projects
+		.project-card 
+			h3.proj-card-title #{project.title}
+			.proj-card-img-wrapper 
+				img.proj-img(src="/_assets/medium_valivaryus_splash_01_5c339485d5.png", alt="Photo", srcset="")
+	//- ul
+	//- 	each project in projects
+	//- 		li #{project.title}
+	//- 		li #{project.prompt}
+section.section.sketchbook
+	h2 Sketchbook
+section.section.about 
+	h2 About Me
+section.section.finds
+	h2 Interesting Finds
