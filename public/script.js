@@ -15,7 +15,7 @@ menuToggle.addEventListener("click", bodyNoScroll);
 
 // ***** trying to close nav when ID links are clicked ***** //
 
-let nodeLinks = document.querySelectorAll('a[href*="/#"]');
+let nodeLinks = document.querySelectorAll('.nav-item a[href*="/#"]');
 let links = Array.from(nodeLinks);
 
 links.forEach(function (item) {
