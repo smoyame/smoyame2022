@@ -76,6 +76,11 @@ a {
 	padding-top: calc(var(--unit) + 0.3rem);
 }
 
+.section:not(.section.hero-home) {
+	position: relative;
+	z-index: 1;
+}
+
 .section {
 	min-height: 40vh;
 	grid-template-columns: var(--grid-col-setup);
@@ -89,10 +94,15 @@ a {
 
 // ***** Header ***** //
 
-.logotype {
+.header {
 	position: fixed;
-	mix-blend-mode: difference;
+	z-index: 100;
 }
+
+// .logotype {
+// 	position: fixed;
+// 	mix-blend-mode: difference;
+// }
 
 // ** NAV ** //
 
@@ -326,6 +336,8 @@ h2 {
 	grid-template-columns: var(--grid-col-setup);
 	gap: var(--gap-size);
 	align-items: end;
+	position: sticky;
+	top: 0;
 }
 
 .hero-text {
@@ -334,6 +346,7 @@ h2 {
 	font-weight: 600;
 	grid-column: 1 / -1;
 	transition: grid-column 4s ease-in;
+	z-index: -4;
 }
 
 // ** HOME - PROJECT ** //
@@ -507,7 +520,6 @@ h2 {
 		padding-block: unset;
 		color: var(--foreground-color);
 		border-bottom: none;
-		z-index: 100;
 		transition: all 100ms ease-out;
 		transition-property: padding, backgound-color;
 		&:hover {

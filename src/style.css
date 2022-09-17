@@ -184,6 +184,11 @@ a {
   padding-top: calc(var(--unit) + 0.3rem);
 }
 
+.section:not(.section.hero-home) {
+  position: relative;
+  z-index: 1;
+}
+
 .section {
   min-height: 40vh;
   grid-template-columns: var(--grid-col-setup);
@@ -194,9 +199,9 @@ a {
   overflow: hidden;
 }
 
-.logotype {
+.header {
   position: fixed;
-  mix-blend-mode: difference;
+  z-index: 100;
 }
 
 .logotype a,
@@ -405,6 +410,9 @@ h2 {
   grid-template-columns: var(--grid-col-setup);
   gap: var(--gap-size);
   align-items: end;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
 }
 
 .hero-text {
@@ -414,6 +422,7 @@ h2 {
   grid-column: 1/-1;
   transition: grid-column 4s ease-in;
   transition: grid-column 4s ease-in, -ms-grid-column 4s ease-in;
+  z-index: -4;
 }
 
 .work * {
@@ -554,7 +563,6 @@ body:not(.no-scroll) .toggle-checkbox:not(:checked) ~ .nav-wrapper .nav-item a {
     padding-block: unset;
     color: var(--foreground-color);
     border-bottom: none;
-    z-index: 100;
     transition: all 100ms ease-out;
     transition-property: padding, backgound-color;
   }
