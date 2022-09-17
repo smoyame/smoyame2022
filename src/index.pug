@@ -4,14 +4,16 @@ layout: '_base.pug'
 ---
 
 section.section.hero-home
-	span.hero-text #{homepage.intro}
+	.hero-text #{homepage.intro}
 section.section.work#work 
 	h2 My work
-	each project in projects
-		.project-card 
-			h3.proj-card-title #{project.title}
-			.proj-card-img-wrapper 
-				img.proj-card-img(src="/_assets/medium_valivaryus_splash_01_5c339485d5.png", alt="Photo", srcset="")
+	.project-gallery
+		each project in projects
+			.project-card 
+				a.proj-card-text(href="#projectlink")
+					h3.proj-card-title #{project.title}
+				a.proj-card-img-wrapper(href="#projectlink") 
+					img.proj-card-img(src="/_assets/medium_valivaryus_splash_01_5c339485d5.png", alt="Photo", srcset="")
 	//- ul
 	//- 	each project in projects
 	//- 		li #{project.title}

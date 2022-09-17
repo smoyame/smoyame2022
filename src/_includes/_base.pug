@@ -8,22 +8,7 @@ html(lang="en")
 		title SMOYA.ME | #{title}
 	body#body
 		.container
-			header.header 
-				h1.logotype 
-					a(href="/") smoya.me
-				nav.nav
-					input.toggle-checkbox(id="toggle-nav-id" type="checkbox")
-					ul.nav-wrapper
-						li.nav-item 
-							a(href="/#work") Work
-						li.nav-item 
-							a(href="/sketchbook") Sketchbook
-						li.nav-item 
-							a(href="/about") About
-						li.nav-item 
-							a(href="/#finds") Finds
-					label.toggle-label(for="toggle-nav-id")
-						span.toggle-icon 
+			include _header.pug
 			main.main 
 				!=content
 			footer.footer
