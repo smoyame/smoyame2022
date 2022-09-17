@@ -21,7 +21,8 @@
 	"homepage": "https://github.com/smoyamedina/smoyame#readme",
 	"dependencies": {
 		"@11ty/eleventy": "^1.0.2",
-		"axios": "^0.27.2"
+		"axios": "^0.27.2",
+		"gsap": "npm:@gsap/member@^3.11.1"
 	},
 	"devDependencies": {
 		"prettier": "2.7.1"

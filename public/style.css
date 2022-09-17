@@ -379,7 +379,6 @@ body.no-scroll .toggle-checkbox:checked ~ .nav-wrapper .nav-item a {
   border-bottom: var(--border-base);
   z-index: 100;
   transition: all 100ms ease-out;
-  transition-property: padding, backgound-color;
 }
 .nav-item a:hover {
   background-color: var(--main-bright);
@@ -501,7 +500,7 @@ h2 {
   border-radius: var(--border-radius-unit);
 }
 
-@media (min-width: 860px) {
+@media (min-width: 970px) {
   .no-scroll {
     overflow: auto;
   }
@@ -522,7 +521,7 @@ h2 {
     right: initial;
     left: initial;
     width: 14.8%;
-    min-width: 13ch;
+    min-width: 11ch;
     pointer-events: auto;
   }
   .nav-wrapper {
@@ -567,7 +566,7 @@ body:not(.no-scroll) .toggle-checkbox:not(:checked) ~ .nav-wrapper .nav-item a {
     color: var(--foreground-color);
     border-bottom: none;
     transition: all 100ms ease-out;
-    transition-property: padding, backgound-color;
+    transition-property: padding, backgound-color, color;
   }
   .nav-item a:hover {
     background-color: unset;
@@ -599,9 +598,11 @@ body:not(.no-scroll) .toggle-checkbox:not(:checked) ~ .nav-wrapper .nav-item a {
   .nav-item:not(:first-of-type) a {
     padding-top: 0.5rem;
     border-top: 2px solid var(--foreground-color);
+    transition-property: all;
   }
   .nav-item:last-of-type a {
     border-bottom: 2px solid var(--foreground-color);
+    transition-property: all;
   }
   .hero-text {
     grid-column: 5/-1;

@@ -296,7 +296,7 @@ body.no-scroll .toggle-checkbox:checked ~ .nav-wrapper .nav-item a {
 	border-bottom: var(--border-base);
 	z-index: 100;
 	transition: all 100ms ease-out;
-	transition-property: padding, backgound-color;
+	// transition-property: padding, backgound-color, color;
 	&:hover {
 		background-color: var(--main-bright);
 		color: var(--main-dark);
@@ -433,7 +433,7 @@ h2 {
 
 // ***** Desktop ***** //
 
-@media (min-width: 860px) {
+@media (min-width: 970px) {
 	// Utilities
 	.no-scroll {
 		overflow: auto;
@@ -462,7 +462,7 @@ h2 {
 		right: initial;
 		left: initial;
 		width: 14.8%;
-		min-width: 13ch;
+		min-width: 11ch;
 		pointer-events: auto;
 	}
 
@@ -521,7 +521,7 @@ h2 {
 		color: var(--foreground-color);
 		border-bottom: none;
 		transition: all 100ms ease-out;
-		transition-property: padding, backgound-color;
+		transition-property: padding, backgound-color, color;
 		&:hover {
 			background-color: unset;
 			color: unset;
@@ -562,10 +562,12 @@ h2 {
 	.nav-item:not(:first-of-type) a {
 		padding-top: 0.5rem;
 		border-top: 2px solid var(--foreground-color);
+		transition-property: all;
 	}
 
 	.nav-item:last-of-type a {
 		border-bottom: 2px solid var(--foreground-color);
+		transition-property: all;
 	}
 
 	// ***** Main Content ***** //
@@ -599,3 +601,11 @@ h2 {
 		grid-column-start: 3;
 	}
 }
+
+// // ***** In-between ***** //
+
+// @media (max-width: 1245px) {
+// 	.project-card {
+// 		grid-column: 5 / span 5;
+// 	}
+// }
