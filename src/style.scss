@@ -81,13 +81,6 @@ a {
 	grid-template-columns: var(--grid-col-setup);
 	gap: var(--gap-size);
 }
-
-.main {
-	display: flex;
-	flex-direction: column;
-	z-index: 50;
-}
-
 // Utilities
 
 .no-scroll {
@@ -333,9 +326,6 @@ h2 {
 	grid-template-columns: var(--grid-col-setup);
 	gap: var(--gap-size);
 	align-items: end;
-	//for hero effect
-	position: sticky;
-	top: 0;
 }
 
 .hero-text {
@@ -344,8 +334,6 @@ h2 {
 	font-weight: 600;
 	grid-column: 1 / -1;
 	transition: grid-column 4s ease-in;
-	// to go behind effect
-	z-index: -50;
 }
 
 // ** HOME - PROJECT ** //

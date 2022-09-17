@@ -190,12 +190,6 @@ a {
   gap: var(--gap-size);
 }
 
-.main {
-  display: flex;
-  flex-direction: column;
-  z-index: 50;
-}
-
 .no-scroll {
   overflow: hidden;
 }
@@ -411,9 +405,6 @@ h2 {
   grid-template-columns: var(--grid-col-setup);
   gap: var(--gap-size);
   align-items: end;
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
 }
 
 .hero-text {
@@ -423,7 +414,6 @@ h2 {
   grid-column: 1/-1;
   transition: grid-column 4s ease-in;
   transition: grid-column 4s ease-in, -ms-grid-column 4s ease-in;
-  z-index: -50;
 }
 
 .work * {
