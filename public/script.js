@@ -101,6 +101,7 @@ let projCards = gsap.utils.toArray(".project-card");
 
 gsap.to(".project-gallery", {
 	xPercent: -100 * (projCards.length - 1),
+	// xPercent: -60,
 	ease: "none",
 	scrollTrigger: {
 		trigger: ".project-gallery",
@@ -108,20 +109,31 @@ gsap.to(".project-gallery", {
 		pin: true,
 		scrub: 1,
 		// base vertical scrolling on how wide the container is so it feels more natural.
-		end: "+=3500",
+		end: "+=1500",
 	},
 });
 
-// hero text
+// Logo
 
-// gsap.to(".hero-text", {
-// 	display: "none",
-// 	scrollTrigger: {
-// 		trigger: ".work",
-// 		start: "top 50%",
-// 		toggleActions: "play pause pause reverse",
-// 	},
-// });
+gsap.to(".logotype a", {
+	color: "var(--main-dark)",
+	scrollTrigger: {
+		trigger: ".work",
+		markers: true,
+		start: "top 5%",
+		toggleActions: "play reset play reset",
+	},
+});
+
+gsap.to(".logotype a", {
+	color: "var(--main-bright)",
+	scrollTrigger: {
+		trigger: ".work",
+		markers: true,
+		start: "bottom 5%",
+		toggleActions: "play reset play reset",
+	},
+});
 
 // gsap.to(".hero-text", {
 // 	y: "16%",
