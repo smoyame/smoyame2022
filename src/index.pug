@@ -4,6 +4,7 @@ layout: '_base.pug'
 ---
 
 section.section.hero-home
+	//- .job-title Designer + Digital Enthusiast
 	.hero-text With a love for digital and social design, I strive to keep giving while growing.
 section.section.work#work 
 	h2 My work
@@ -21,8 +22,15 @@ section.section.work#work
 	//- 		li #{project.title}
 	//- 		li #{project.prompt}
 section.section.sketchbook
-	h2 Sketchbook
-section.section.about 
+	h2 Sketchbook 
+section.section.about
 	h2 About Me
-section.section.finds
+	.about-wrapper
+		.about-id-info 
+			p.about-name Sami <span class="about-name-last">Moya Medina</span> 
+			p.about-pronouns #{about.pronouns}
+		.about-text
+			.about-synopsis #{about.synopsis}
+			a(href="/about").about-linkout  My experience + more
+section.section.finds#finds
 	h2 Interesting Finds
