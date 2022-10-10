@@ -97,12 +97,10 @@ cursorModifiers.forEach((cursorModifier) => {
 
 // ***** GSAP ***** //
 
+// Proj Gallery, horizontal scroll
 let projCards = gsap.utils.toArray(".project-card");
-
 gsap.to(".project-gallery", {
 	xPercent: -100 * (projCards.length - 1),
-	// xPercent: -60,
-	ease: "none",
 	scrollTrigger: {
 		trigger: ".project-gallery",
 		start: "top top",
@@ -114,36 +112,44 @@ gsap.to(".project-gallery", {
 });
 
 // Logo
-
-gsap.to(".logotype a", {
-	color: "var(--main-dark)",
+let logotypeSelector = ".logotype a";
+gsap.to(logotypeSelector, {
+	"--foreground-color": "var(--main-dark)",
 	scrollTrigger: {
 		trigger: ".work",
-		markers: true,
 		start: "top 5%",
+		end: "bottom 3%",
 		toggleActions: "play reset play reset",
 	},
 });
 
-gsap.to(".logotype a", {
-	color: "var(--main-bright)",
+// Nav Color Switch only if on desktop
+let mm = gsap.matchMedia();
+mm.add("(min-width:970px)", () => {
+	let navItemSelector = ".nav-item a";
+	gsap.to(navItemSelector, {
+		"--foreground-color": "var(--main-dark)",
+		borderColor: "var(--foreground-color)",
+		scrollTrigger: {
+			trigger: ".work",
+			start: "top 10%",
+			end: "bottom 10%",
+			toggleActions: "play reset play reset",
+		},
+	});
+});
+
+// For Home-page Hero Text
+
+gsap.to(".hero-text", {
+	y: "16%",
+	opacity: 0,
 	scrollTrigger: {
 		trigger: ".work",
-		markers: true,
-		start: "bottom 5%",
-		toggleActions: "play reset play reset",
+		scrub: 0.5,
+		// markers: true,
+		start: "top 87%",
+		end: "top 50%",
+		toggleActions: "play pause pause reverse",
 	},
 });
-
-// gsap.to(".hero-text", {
-// 	y: "16%",
-// 	opacity: 0,
-// 	scrollTrigger: {
-// 		trigger: ".work",
-// 		scrub: true,
-// 		markers: true,
-// 		start: "top 87%",
-// 		end: "top 50%",
-// 		toggleActions: "play pause pause reverse",
-// 	},
-// });
