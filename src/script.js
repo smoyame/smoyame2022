@@ -29,74 +29,109 @@ links.forEach(function (item) {
 	});
 });
 
+// Cursor
+gsap.from("#cursor", { ease: "linear", autoAlpha: 0 });
+
+// ▶ cojea gabriel - thanks a bunch dude - cursor ◀
+const cursor = document.querySelector("#cursor");
+const cursorCircle = cursor.querySelector(".cursor__circle");
+
+const mouse = { x: -100, y: -100 }; // mouse pointer's coordinates
+const pos = { x: 0, y: 0 }; // cursor's coordinates
+const speed = 0.4; // between 0 and 1
+
+const updateCoordinates = (e) => {
+	mouse.x = e.clientX;
+	mouse.y = e.clientY;
+};
+
+window.addEventListener("mousemove", updateCoordinates);
+
+function getAngle(diffX, diffY) {
+	return (Math.atan2(diffY, diffX) * 180) / Math.PI;
+}
+
+function getSqueeze(diffX, diffY) {
+	const distance = Math.sqrt(Math.pow(diffX, 2) + Math.pow(diffY, 2));
+	const maxSqueeze = 0.45;
+	const accelerator = 1500;
+	return Math.min(distance / accelerator, maxSqueeze);
+}
+
+const updateCursor = () => {
+	const diffX = Math.round(mouse.x - pos.x);
+	const diffY = Math.round(mouse.y - pos.y);
+
+	pos.x += diffX * speed;
+	pos.y += diffY * speed;
+
+	const angle = getAngle(diffX, diffY);
+	const squeeze = getSqueeze(diffX, diffY);
+
+	const scale = "scale(" + (1 + squeeze) + ", " + (1 - squeeze) + ")";
+	const rotate = "rotate(" + angle + "deg)";
+	const translate = "translate3d(" + pos.x + "px ," + pos.y + "px, 0)";
+
+	cursor.style.transform = translate;
+	cursorCircle.style.transform = rotate + scale;
+};
+
+function loop() {
+	updateCursor();
+	requestAnimationFrame(loop);
+}
+requestAnimationFrame(loop);
+
+const cursorModifiers = document.querySelectorAll("[data-cursor-class]");
+cursorModifiers.forEach((cursorModifier) => {
+	cursorModifier.addEventListener("mouseenter", function () {
+		const className = this.getAttribute("data-cursor-class");
+		cursor.classList.add(className);
+	});
+
+	cursorModifier.addEventListener("mouseleave", function () {
+		const className = this.getAttribute("data-cursor-class");
+		cursor.classList.remove(className);
+	});
+});
+
 // ***** GSAP ***** //
 
-//enter
-gsap.to(".logotype", {
-	ease: "power4.out",
-	color: "var(--main-dark)",
-	borderColor: "var(--main-dark)",
-	duration: 2,
+let projCards = gsap.utils.toArray(".project-card");
+
+gsap.to(".project-gallery", {
+	xPercent: -100 * (projCards.length - 1),
+	ease: "none",
 	scrollTrigger: {
-		trigger: ".work",
-		scrub: true,
-		toggleActions: "play reverse play reverse",
-		start: "top 10%",
+		trigger: ".project-gallery",
+		start: "top top",
+		pin: true,
+		scrub: 1,
+		// base vertical scrolling on how wide the container is so it feels more natural.
+		end: "+=3500",
 	},
 });
 
-gsap.to(".nav-item a", {
-	ease: "power4.out",
-	color: "var(--main-dark)",
-	borderColor: "var(--main-dark)",
-	duration: 2,
-	scrollTrigger: {
-		trigger: ".work",
-		scrub: true,
-		toggleActions: "play reset play reset",
-		start: "top 10%",
-		end: "bottom 10%",
-	},
-});
+// hero text
 
-gsap.to(".nav-wrapper:before", {
-	ease: "power4.out",
-	backgroundColor: "var(--background-color)",
-	duration: 2,
-	scrollTrigger: {
-		trigger: ".work",
-		scrub: true,
-		markers: "true",
-		toggleActions: "play reset play reset",
-		start: "top 10%",
-		end: "bottom 10%",
-	},
-});
+// gsap.to(".hero-text", {
+// 	display: "none",
+// 	scrollTrigger: {
+// 		trigger: ".work",
+// 		start: "top 50%",
+// 		toggleActions: "play pause pause reverse",
+// 	},
+// });
 
-//leave
-gsap.to(".logotype", {
-	ease: "power4.out",
-	color: "var(--foreground-color)",
-	borderColor: "var(--foreground-color)",
-	duration: 2,
-	scrollTrigger: {
-		trigger: ".work",
-		scrub: true,
-		toggleActions: "play reverse play reverse",
-		start: "bottom 10%",
-	},
-});
-
-gsap.to(".nav-item a", {
-	ease: "power4.out",
-	color: "var(--foreground-color)",
-	borderColor: "var(--foreground-color)",
-	duration: 2,
-	scrollTrigger: {
-		trigger: ".work",
-		scrub: true,
-		toggleActions: "play reset play reset",
-		start: "bottom 10%",
-		end: "top 10%",
-	},
-});
+// gsap.to(".hero-text", {
+// 	y: "16%",
+// 	opacity: 0,
+// 	scrollTrigger: {
+// 		trigger: ".work",
+// 		scrub: true,
+// 		markers: true,
+// 		start: "top 87%",
+// 		end: "top 50%",
+// 		toggleActions: "play pause pause reverse",
+// 	},
+// });

@@ -31,12 +31,11 @@
 	font-family: "Dico Mono Script", mono;
 }
 
-/* Neuething Sans */
+/* PP Mori - Free to use for personal use */
 
 @font-face {
-	font-family: "Neuething Sans Semi-expanded";
-	src: url("/_assets/fonts/NeuethingSans-RegularSemiExpanded.woff2")
-		format("woff2");
+	font-family: "PP Mori";
+	src: url("/_assets/fonts/PPMori-Regular.woff2") format("woff2");
 	font-display: auto;
 	font-style: normal;
 	font-weight: 400;
@@ -44,9 +43,8 @@
 }
 
 @font-face {
-	font-family: "Neuething Sans Semi-expanded";
-	src: url("/_assets/fonts/NeuethingSans-SemiBoldSemiExpanded.woff2")
-		format("woff2");
+	font-family: "PP Mori";
+	src: url("/_assets/fonts/PPMori-Semibold.woff2") format("woff2");
 	font-display: auto;
 	font-style: normal;
 	font-weight: 600;
@@ -54,19 +52,8 @@
 }
 
 @font-face {
-	font-family: "Neuething Sans Semi-expanded";
-	src: url("/_assets/fonts/NeuethingSans-BoldSemiExpanded.woff2")
-		format("woff2");
-	font-display: auto;
-	font-style: normal;
-	font-weight: 700;
-	font-stretch: normal;
-}
-
-@font-face {
-	font-family: "Neuething Sans Semi-expanded";
-	src: url("/_assets/fonts/NeuethingSans-EtraBoldSemiExpanded.woff2")
-		format("woff2");
+	font-family: "PP Mori";
+	src: url("/_assets/fonts/PPMori-ExtraBold.woff2") format("woff2");
 	font-display: auto;
 	font-style: normal;
 	font-weight: 800;
