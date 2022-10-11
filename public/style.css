@@ -629,18 +629,20 @@ h2 {
 }
 
 .finds-wrapper {
-  display: grid;
-  gap: var(--gap-size);
-  grid-auto-flow: row;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .finds-text {
   margin-bottom: var(--gap-size);
-  max-width: 26ch;
+  flex: 1 1 25%;
+  min-width: 22ch;
 }
 
 .finds-gallery {
+  flex: 1 1 65%;
   margin: 0 auto;
+  max-width: 35ch;
   display: grid;
   grid-template-columns: var(--grid-col-setup);
 }

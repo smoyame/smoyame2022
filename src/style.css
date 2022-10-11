@@ -636,7 +636,7 @@ h2 {
 .finds-text {
   margin-bottom: var(--gap-size);
   flex: 1 1 25%;
-  max-width: 22ch;
+  min-width: 22ch;
 }
 
 .finds-gallery {

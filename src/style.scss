@@ -614,7 +614,7 @@ h2 {
 	// top: 6rem;
 	margin-bottom: var(--gap-size);
 	flex: 1 1 25%;
-	max-width: 22ch;
+	min-width: 22ch;
 	// // testing grid for fluid mobile to desktop
 	// grid-column: 1 / span 5;
 	// grid-row-start: 1;
