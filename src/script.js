@@ -97,6 +97,8 @@ cursorModifiers.forEach((cursorModifier) => {
 
 // ***** GSAP ***** //
 
+// gsap.from("#cursor", { ease: "linear", autoAlpha: 0 });
+
 // Proj Gallery, horizontal scroll
 let projCards = gsap.utils.toArray(".project-card");
 gsap.to(".project-gallery", {
@@ -105,9 +107,10 @@ gsap.to(".project-gallery", {
 		trigger: ".project-gallery",
 		start: "top top",
 		pin: true,
+		// anticipatePin: 1,
 		scrub: 1,
 		// base vertical scrolling on how wide the container is so it feels more natural.
-		end: "+=1500",
+		end: "+=1200",
 	},
 });
 
@@ -118,7 +121,15 @@ gsap.to(logotypeSelector, {
 	scrollTrigger: {
 		trigger: ".work",
 		start: "top 5%",
-		end: "bottom 3%",
+		toggleActions: "play reset play reset",
+	},
+});
+
+gsap.to(logotypeSelector, {
+	"--foreground-color": "var(--main-bright)",
+	scrollTrigger: {
+		trigger: ".work",
+		start: "bottom 3%",
 		toggleActions: "play reset play reset",
 	},
 });
@@ -137,12 +148,22 @@ mm.add("(min-width:970px)", () => {
 			toggleActions: "play reset play reset",
 		},
 	});
+	gsap.to(navItemSelector, {
+		"--foreground-color": "var(--main-bright)",
+		borderColor: "var(--foreground-color)",
+		scrollTrigger: {
+			trigger: ".work",
+			start: "bottom 10%",
+			toggleActions: "play reset play reset",
+		},
+	});
 });
 
 // For Home-page Hero Text
 
 gsap.to(".hero-text", {
 	y: "16%",
+	scale: ".98",
 	opacity: 0,
 	scrollTrigger: {
 		trigger: ".work",

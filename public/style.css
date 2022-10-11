@@ -135,6 +135,7 @@ select {
   );
   --fontsize-b: clamp(2.55rem, 5.78vw, 7rem);
   --fontsize-c: clamp(1.75rem, 3.8vw, 3.6rem);
+  --fontsize-d: clamp(1.65rem, 3.45vw, 2rem);
   --unit: var(--fontsize-base);
   --border-base: 2px solid var(--foreground-color);
   --border-radius-unit: 0.5rem;
@@ -168,6 +169,10 @@ body {
 
 a {
   color: var(--foreground-color);
+}
+
+p:not([class], .footer-form-label ~ p) {
+  margin-bottom: 1em;
 }
 
 .header {
@@ -438,8 +443,8 @@ body.no-scroll .toggle-checkbox:checked ~ .nav-wrapper .nav-item a {
 }
 
 .nav-item a:hover {
-  background-color: var(--main-bright);
-  color: var(--main-dark);
+  background-color: var(--foreground-color);
+  color: var(--background-color);
   padding-left: 0.5rem;
 }
 
@@ -451,10 +456,9 @@ img {
 h2 {
   font-family: var(--primary-font);
   font-size: var(--fontsize-b);
-  font-weight: 300;
+  font-weight: 600;
   line-height: 1em;
   letter-spacing: -0.025em;
-  text-transform: uppercase;
   margin-bottom: var(--h2-space-below);
 }
 
@@ -624,6 +628,59 @@ h2 {
   border-block: 2px solid var(--foreground-color);
 }
 
+.finds-wrapper {
+  display: grid;
+  gap: var(--gap-size);
+  grid-auto-flow: row;
+}
+
+.finds-text {
+  margin-bottom: var(--gap-size);
+  max-width: 26ch;
+}
+
+.finds-gallery {
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: var(--grid-col-setup);
+}
+
+.find-card {
+  display: block;
+  text-decoration: none;
+  padding: var(--unit);
+  margin-bottom: calc(2 * var(--unit));
+  border: var(--border-base);
+  border-radius: calc(var(--unit) / 2);
+  grid-column-end: span 11;
+}
+
+.find-card:nth-child(odd) {
+  grid-column-start: 2;
+}
+
+.find-card:nth-child(even) {
+  grid-column-start: 1;
+}
+
+.find-title {
+  display: inline-block;
+  font-family: var(--secondary-font);
+  font-weight: 300;
+  font-size: var(--fontsize-d);
+  line-height: 1.25em;
+  margin-bottom: calc(1.5 * var(--gap-size));
+}
+
+.find-credit {
+  display: inline-block;
+  text-transform: uppercase;
+}
+
+.find-publisher::before {
+  content: "– ";
+}
+
 .footer * {
   --background-color: var(--main-bright);
   --foreground-color: var(--main-dark);
@@ -646,7 +703,7 @@ h2 {
   display: inline-flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: var(--gap-size);
+  gap: calc(var(--unit) * 0.8);
 }
 
 .footer-fname,
@@ -678,7 +735,8 @@ h2 {
 }
 
 .footer-form-label,
-.footer-colophon-blurb {
+.footer-colophon-blurb,
+.marquee-txt {
   font-family: var(--tertiary-font);
   font-weight: 300;
 }
@@ -686,11 +744,12 @@ h2 {
 .footer-form-label {
   display: inline-block;
   order: 2;
+  margin-top: 0.15rem;
 }
 .footer-form-label + p {
   font-size: var(--fontsize-b);
   font-weight: 600;
-  letter-spacing: -0.0125em;
+  letter-spacing: -0.0155em;
   line-height: 1.125em;
   padding-bottom: 0.0625em;
   border-bottom: 2px solid var(--foreground-color);
@@ -698,12 +757,56 @@ h2 {
 
 .footer-colophon {
   line-height: 1.25;
-  flex: 0 0 14.8%;
+  flex: 1 0 calc(14.8% - 5vw);
   min-width: 13.9ch;
   display: inline-flex;
   flex-direction: column;
   gap: var(--unit);
   justify-content: space-between;
+}
+
+@-webkit-keyframes marqueeAnim {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes marqueeAnim {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+.footer-bar {
+  --background-color: var(--main-bright);
+  --foreground-color: var(--main-dark);
+  background-color: var(--background-color);
+  color: var(--foreground-color);
+  white-space: nowrap;
+  border-block: 2px solid var(--foreground-color);
+  overflow-x: hidden;
+}
+
+.marquee {
+  display: inline-block;
+  -webkit-animation: marqueeAnim 70s linear infinite;
+          animation: marqueeAnim 70s linear infinite;
+}
+
+.footer-bar:hover > div {
+  -webkit-animation-play-state: paused;
+          animation-play-state: paused;
+}
+
+.marquee-txt::after {
+  content: "—";
+  display: inline-block;
+  padding: 1rem 2rem;
 }
 
 @media (min-width: 970px) {
@@ -784,11 +887,6 @@ body:not(.no-scroll) .toggle-checkbox:not(:checked) ~ .nav-wrapper .nav-item a {
     border-bottom: none;
     transition: padding 100ms ease-out, backgound-color 100ms ease-out;
   }
-  .nav-item a:hover {
-    background-color: unset;
-    color: unset;
-    padding-left: 0.5rem;
-  }
   .nav-item a {
     padding-bottom: 0.28rem;
     display: flex;
@@ -806,6 +904,8 @@ body:not(.no-scroll) .toggle-checkbox:not(:checked) ~ .nav-wrapper .nav-item a {
     transition: opacity 100ms var(--primary-ease);
   }
   .nav-item a:hover {
+    background-color: unset;
+    color: var(--foreground-color);
     padding-left: 0;
   }
   .nav-item a:hover::after {

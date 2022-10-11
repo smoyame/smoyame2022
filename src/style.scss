@@ -31,6 +31,7 @@
 	); //finesse this later
 	--fontsize-b: clamp(2.55rem, 5.78vw, 7rem);
 	--fontsize-c: clamp(1.75rem, 3.8vw, 3.6rem);
+	--fontsize-d: clamp(1.65rem, 3.45vw, 2rem);
 
 	--unit: var(--fontsize-base);
 	--border-base: 2px solid var(--foreground-color);
@@ -73,6 +74,10 @@ a {
 	color: var(--foreground-color);
 }
 
+p:not([class], .footer-form-label ~ p) {
+	margin-bottom: 1em;
+}
+
 .header {
 	padding-top: calc(var(--unit));
 }
@@ -95,6 +100,7 @@ a {
 }
 
 //cursor
+
 #cursor {
 	position: fixed;
 	z-index: 999;
@@ -103,8 +109,6 @@ a {
 	pointer-events: none;
 	will-change: transform;
 	mix-blend-mode: color-burn;
-	// for slow loading, will be toggled by GSAP or noscript tag
-	// visibility: hidden;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -122,18 +126,15 @@ a {
 			width 0.3s cubic-bezier(0.25, 1, 0.5, 1),
 			height 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 	}
-
 	#cursor.arrow .cursor__circle {
 		width: 128px;
 		height: 128px;
 		background-color: var(--main-vibing);
 		border-color: var(--main-vibing);
 	}
-
 	#cursor.arrow {
 		mix-blend-mode: soft-light;
 	}
-
 	#cursor.arrow::after {
 		content: "";
 		position: absolute;
@@ -144,16 +145,13 @@ a {
 		background-repeat: no-repeat;
 		background-position: center;
 	}
-
 	#cursor.subtle .cursor__circle {
 		opacity: 0.16;
 	}
-
 	#cursor.overlay .cursor__circle {
 		width: 48px;
 		height: 48px;
 		background-color: var(--main-vibing);
-		// border-color: transparent;
 	}
 }
 
@@ -400,11 +398,11 @@ body.no-scroll .toggle-checkbox:checked ~ .nav-wrapper .nav-item a {
 	transition: padding 100ms ease-out, backgound-color 100ms ease-out;
 }
 .nav-item a:hover {
-	background-color: var(--main-bright);
-	color: var(--main-dark);
+	background-color: var(--foreground-color);
+	color: var(--background-color);
 	padding-left: 0.5rem;
 }
-
+//
 // ***** Main Content ***** //
 
 img {
@@ -415,10 +413,10 @@ img {
 h2 {
 	font-family: var(--primary-font);
 	font-size: var(--fontsize-b);
-	font-weight: 300;
+	font-weight: 600;
 	line-height: 1em;
 	letter-spacing: -0.025em;
-	text-transform: uppercase;
+	// text-transform: uppercase;
 	margin-bottom: var(--h2-space-below);
 }
 
@@ -599,7 +597,78 @@ h2 {
 	border-block: 2px solid var(--foreground-color);
 }
 
+// ** HOME - FINDS ** //
+
+.finds-wrapper {
+	// position: relative;
+	display: flex;
+	flex-wrap: wrap;
+	// // testing grid for fluid mobile to desktop
+	// display: grid;
+	// gap: var(--gap-size);
+	// grid-auto-flow: row;
+}
+
+.finds-text {
+	// position: sticky;
+	// top: 6rem;
+	margin-bottom: var(--gap-size);
+	flex: 1 1 25%;
+	max-width: 22ch;
+	// // testing grid for fluid mobile to desktop
+	// grid-column: 1 / span 5;
+	// grid-row-start: 1;
+}
+
+.finds-gallery {
+	flex: 1 1 65%;
+	margin: 0 auto;
+	max-width: 35ch;
+	display: grid;
+	grid-template-columns: var(--grid-col-setup);
+	// // testing grid for fluid mobile to desktop
+	// grid-column: 5 / -1;
+	// grid-row-start: 1;
+}
+
+.find-card {
+	display: block;
+	text-decoration: none;
+	padding: var(--unit);
+	margin-bottom: calc(2 * var(--unit));
+	border: var(--border-base);
+	border-radius: calc(var(--unit) / 2);
+	grid-column-end: span 11;
+}
+
+.find-card:nth-child(odd) {
+	grid-column-start: 2;
+}
+
+.find-card:nth-child(even) {
+	grid-column-start: 1;
+}
+
+.find-title {
+	display: inline-block;
+	font-family: var(--secondary-font);
+	font-weight: 300;
+	font-size: var(--fontsize-d);
+	line-height: 1.25em;
+	margin-bottom: calc(1.5 * var(--gap-size));
+}
+
+.find-credit {
+	display: inline-block;
+	text-transform: uppercase;
+}
+
+.find-publisher::before {
+	content: "\2013  ";
+}
+
 // ***** Footer ***** //
+
 .footer * {
 	--background-color: var(--main-bright);
 	--foreground-color: var(--main-dark);
@@ -623,7 +692,7 @@ h2 {
 	display: inline-flex;
 	flex-direction: row;
 	flex-wrap: wrap;
-	gap: var(--gap-size);
+	gap: calc(var(--unit) * 0.8);
 	// margin-bottom: var(--gap-size);
 }
 
@@ -652,7 +721,8 @@ h2 {
 }
 
 .footer-form-label,
-.footer-colophon-blurb {
+.footer-colophon-blurb,
+.marquee-txt {
 	font-family: var(--tertiary-font);
 	font-weight: 300;
 }
@@ -660,11 +730,11 @@ h2 {
 .footer-form-label {
 	display: inline-block;
 	order: 2;
-
+	margin-top: 0.15rem;
 	& + p {
 		font-size: var(--fontsize-b);
 		font-weight: 600;
-		letter-spacing: -0.0125em;
+		letter-spacing: -0.0155em;
 		line-height: 1.125em;
 		padding-bottom: 0.0625em;
 		border-bottom: 2px solid var(--foreground-color);
@@ -673,7 +743,7 @@ h2 {
 
 .footer-colophon {
 	line-height: 1.25;
-	flex: 0 0 14.8%;
+	flex: 1 0 calc(14.8% - 5vw);
 	min-width: 13.9ch;
 	// max-width: 21ch;
 	display: inline-flex;
@@ -683,6 +753,41 @@ h2 {
 }
 
 // Footer Bar
+
+@keyframes marqueeAnim {
+	0% {
+		transform: translateX(0%);
+	}
+
+	100% {
+		transform: translateX(-100%);
+	}
+}
+
+.footer-bar {
+	--background-color: var(--main-bright);
+	--foreground-color: var(--main-dark);
+	background-color: var(--background-color);
+	color: var(--foreground-color);
+	white-space: nowrap;
+	border-block: 2px solid var(--foreground-color);
+	overflow-x: hidden;
+}
+
+.marquee {
+	display: inline-block;
+	animation: marqueeAnim 70s linear infinite;
+}
+
+.footer-bar:hover > div {
+	animation-play-state: paused;
+}
+
+.marquee-txt::after {
+	content: "\2014";
+	display: inline-block;
+	padding: 1rem 2rem;
+}
 
 // ***** Desktop ***** //
 
@@ -776,6 +881,13 @@ h2 {
 		// transition-property: padding;
 	}
 
+	// .nav-item a:hover {
+	// 	background-color: none;
+	// 	--background-color: var(--main-bright);
+	// 	--foreground-color: var(--main-dark);
+	// 	color: var(--foreground-color);
+	// }
+
 	// * new desktop settings * //
 
 	// .nav-wrapper {
@@ -799,16 +911,12 @@ h2 {
 		pointer-events: auto;
 		display: block;
 		padding-block: unset;
+
 		color: var(--foreground-color);
 		border-bottom: none;
 		// transition: all 100ms ease-out;
 		transition: padding 100ms ease-out, backgound-color 100ms ease-out;
 		// transition: color 100s ease-out;
-	}
-	.nav-item a:hover {
-		background-color: unset;
-		color: unset;
-		padding-left: 0.5rem;
 	}
 	.nav-item a {
 		padding-bottom: 0.28rem;
@@ -826,7 +934,10 @@ h2 {
 		line-height: 0.55;
 		transition: opacity 100ms var(--primary-ease);
 	}
+
 	.nav-item a:hover {
+		background-color: unset;
+		color: var(--foreground-color);
 		padding-left: 0;
 	}
 	.nav-item a:hover::after {
@@ -888,5 +999,3 @@ h2 {
 		grid-column: 4 / span 6;
 	}
 }
-
-// // ***** In-between ***** //

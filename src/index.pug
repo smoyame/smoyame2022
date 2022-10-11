@@ -11,11 +11,11 @@ section.section.work#work
 	.project-gallery
 		each project in projects
 			.project-card 
-				a.proj-card-text(href="#projectlink")
+				a.proj-card-text(href="#projectlink" data-cursor-class="arrow")
 					h3.proj-card-title #{project.title}
 				.proj-card-tag 
 					p Web Design
-				a.proj-card-img-wrapper(href="#projectlink") 
+				a.proj-card-img-wrapper(href="#projectlink" data-cursor-class="arrow") 
 					img.proj-card-img(src="/_assets/medium_valivaryus_splash_01_5c339485d5.png", alt="Photo", srcset="")
 	//- ul
 	//- 	each project in projects
@@ -31,6 +31,22 @@ section.section.about
 			p.about-pronouns #{about.pronouns}
 		.about-text
 			.about-synopsis #{about.synopsis}
-			a(href="/about").about-linkout  My experience + more
+			a(href="/about" data-cursor-class="arrow").about-linkout  My experience + more
 section.section.finds#finds
 	h2 Interesting Finds
+	.finds-wrapper 
+		.finds-text!=`${homepage.findSectionText}`
+		.finds-gallery 
+			each find in finds
+				a(href=`${find.link}` target="_blank" data-cursor-class="arrow").find-card
+					h4.find-title #{find.title}
+					.find-credits 
+						if find.author && find.publisher
+							p.find-credit.find-author #{find.author}
+							p.find-credit.find-publisher #{find.publisher}
+						else if !find.publisher
+							p.find-credit #{find.author}
+						else if !find.author
+							p.find-credit #{find.publisher}
+
+
