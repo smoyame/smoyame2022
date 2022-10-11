@@ -599,6 +599,91 @@ h2 {
 	border-block: 2px solid var(--foreground-color);
 }
 
+// ***** Footer ***** //
+.footer * {
+	--background-color: var(--main-bright);
+	--foreground-color: var(--main-dark);
+}
+
+.footer {
+	--background-color: var(--main-bright);
+	--foreground-color: var(--main-dark);
+	background-color: var(--background-color);
+	color: var(--foreground-color);
+	padding: var(--unit);
+	border-radius: 0.5rem 0.5rem 0 0;
+	// For side colophon
+	display: flex;
+	flex-wrap: wrap;
+	row-gap: var(--gap-size);
+}
+
+.footer-id {
+	flex: 1 0 80%;
+	display: inline-flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	gap: var(--gap-size);
+	// margin-bottom: var(--gap-size);
+}
+
+.footer-fname,
+.footer-lname,
+.footer-id-email,
+.footer-id-linkedin {
+	text-decoration: none;
+	display: inline-flex;
+	flex-direction: column;
+	width: fit-content;
+}
+
+.footer-id-name,
+.footer-id-linkedin {
+	width: fit-content;
+}
+
+.footer-id-email {
+	display: inline-flex;
+	flex-wrap: wrap;
+}
+
+.footer-id-email p {
+	overflow-wrap: anywhere;
+}
+
+.footer-form-label,
+.footer-colophon-blurb {
+	font-family: var(--tertiary-font);
+	font-weight: 300;
+}
+
+.footer-form-label {
+	display: inline-block;
+	order: 2;
+
+	& + p {
+		font-size: var(--fontsize-b);
+		font-weight: 600;
+		letter-spacing: -0.0125em;
+		line-height: 1.125em;
+		padding-bottom: 0.0625em;
+		border-bottom: 2px solid var(--foreground-color);
+	}
+}
+
+.footer-colophon {
+	line-height: 1.25;
+	flex: 0 0 14.8%;
+	min-width: 13.9ch;
+	// max-width: 21ch;
+	display: inline-flex;
+	flex-direction: column;
+	gap: var(--unit);
+	justify-content: space-between;
+}
+
+// Footer Bar
+
 // ***** Desktop ***** //
 
 @media (min-width: 970px) {
