@@ -11,11 +11,11 @@ section.section.work#work
 	.project-gallery
 		each project in projects
 			.project-card 
-				a.proj-card-text(href="#projectlink" data-cursor-class="arrow")
+				a.proj-card-text(href=`projects/${project.slug}` data-cursor-class="arrow")
 					h3.proj-card-title #{project.title}
 				.proj-card-tag 
 					p Web Design
-				a.proj-card-img-wrapper(href="#projectlink" data-cursor-class="arrow") 
+				a.proj-card-img-wrapper(href=`projects/${project.slug}` data-cursor-class="arrow") 
 					img.proj-card-img(src="/_assets/medium_valivaryus_splash_01_5c339485d5.png", alt="Photo", srcset="")
 	//- ul
 	//- 	each project in projects
@@ -41,6 +41,7 @@ section.section.finds#finds
 				a(href=`${find.link}` target="_blank" data-cursor-class="arrow").find-card
 					h4.find-title #{find.title}
 					.find-credits 
+						p.find-credit(class=`${authorClass} ${authorClass}`)
 						if find.author && find.publisher
 							p.find-credit.find-author #{find.author}
 							p.find-credit.find-publisher #{find.publisher}

@@ -133,9 +133,9 @@ select {
   	calc(11px + 4.25vw),
   	10rem
   );
-  --fontsize-b: clamp(2.55rem, 5.78vw, 7rem);
-  --fontsize-c: clamp(1.75rem, 3.8vw, 3.6rem);
-  --fontsize-d: clamp(1.65rem, 3.45vw, 2rem);
+  --fontsize-b: clamp(3.25rem, 5.78vw, 7rem);
+  --fontsize-c: clamp(2rem, 3.8vw, 3.6rem);
+  --fontsize-d: clamp(1.75rem, 2.125vw, 2rem);
   --unit: var(--fontsize-base);
   --border-base: 2px solid var(--foreground-color);
   --border-radius-unit: 0.5rem;
@@ -631,6 +631,8 @@ h2 {
 .finds-wrapper {
   display: flex;
   flex-wrap: wrap;
+  -moz-column-gap: var(--gap-size);
+       column-gap: var(--gap-size);
 }
 
 .finds-text {
@@ -655,6 +657,12 @@ h2 {
   border: var(--border-base);
   border-radius: calc(var(--unit) / 2);
   grid-column-end: span 11;
+  transition: all 150ms ease-in-out;
+}
+
+.find-card:hover {
+  color: var(--background-color);
+  background: var(--foreground-color);
 }
 
 .find-card:nth-child(odd) {
@@ -666,7 +674,6 @@ h2 {
 }
 
 .find-title {
-  display: inline-block;
   font-family: var(--secondary-font);
   font-weight: 300;
   font-size: var(--fontsize-d);
@@ -923,7 +930,7 @@ body:not(.no-scroll) .toggle-checkbox:not(:checked) ~ .nav-wrapper .nav-item a {
   .section {
     display: grid;
     grid-template-columns: var(--grid-col-setup);
-    gap: var(--unit);
+    gap: var(--gap-size);
   }
   .work > h2 {
     grid-column: 3/-1;
@@ -951,5 +958,49 @@ body:not(.no-scroll) .toggle-checkbox:not(:checked) ~ .nav-wrapper .nav-item a {
   .about h2,
 .about-wrapper {
     grid-column: 4/span 6;
+  }
+  .finds {
+    margin: 0 auto;
+    width: 64%;
+    padding-inline: 0;
+    gap: var(--gap-size);
+  }
+  .finds h2,
+.finds-wrapper {
+    grid-column: 1/-1;
+  }
+  .finds-wrapper {
+    position: relative;
+    margin-bottom: calc(var(--section-block-padding) * 2);
+  }
+  .finds-text {
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    position: -webkit-sticky;
+    position: sticky;
+    top: var(--section-block-padding);
+  }
+  .finds-gallery {
+    margin: unset;
+    max-width: unset;
+    grid-template-columns: repeat(6, 1fr);
+    gap: inherit;
+  }
+  .find-card {
+    background-color: var(--background-color);
+    z-index: 100;
+  }
+  .find-card:last-of-type {
+    margin-bottom: calc(var(--section-block-padding));
+  }
+  .find-card:first-of-type {
+    grid-column: 2/span 3;
+  }
+  .find-card:nth-child(2) {
+    grid-column: 4/span 3;
+  }
+  .find-card:last-of-type {
+    grid-column: 1/span 3;
   }
 }/*# sourceMappingURL=style.css.map */

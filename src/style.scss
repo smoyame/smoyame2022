@@ -29,9 +29,9 @@
 		calc(11px + 4.25vw),
 		10rem
 	); //finesse this later
-	--fontsize-b: clamp(2.55rem, 5.78vw, 7rem);
-	--fontsize-c: clamp(1.75rem, 3.8vw, 3.6rem);
-	--fontsize-d: clamp(1.65rem, 3.45vw, 2rem);
+	--fontsize-b: clamp(3.25rem, 5.78vw, 7rem);
+	--fontsize-c: clamp(2rem, 3.8vw, 3.6rem);
+	--fontsize-d: clamp(1.75rem, 2.125vw, 2rem);
 
 	--unit: var(--fontsize-base);
 	--border-base: 2px solid var(--foreground-color);
@@ -603,10 +603,11 @@ h2 {
 	// position: relative;
 	display: flex;
 	flex-wrap: wrap;
-	// // testing grid for fluid mobile to desktop
+	// testing grid for fluid mobile to desktop
 	// display: grid;
-	// gap: var(--gap-size);
+	column-gap: var(--gap-size);
 	// grid-auto-flow: row;
+	// grid-template-columns: repeat(auto-fill, minmax(25ch, max(1fr, 25vw)));
 }
 
 .finds-text {
@@ -615,9 +616,9 @@ h2 {
 	margin-bottom: var(--gap-size);
 	flex: 1 1 25%;
 	min-width: 22ch;
-	// // testing grid for fluid mobile to desktop
-	// grid-column: 1 / span 5;
-	// grid-row-start: 1;
+	// testing grid for fluid mobile to desktop
+	// grid-column: 1 / -1;
+	// grid-row: 1 / 2;
 }
 
 .finds-gallery {
@@ -626,9 +627,10 @@ h2 {
 	max-width: 35ch;
 	display: grid;
 	grid-template-columns: var(--grid-col-setup);
-	// // testing grid for fluid mobile to desktop
-	// grid-column: 5 / -1;
-	// grid-row-start: 1;
+	// testing grid for fluid mobile to desktop
+	// grid-column: 1 / -1;
+	// grid-column-end: -1;
+	// grid-row-start: 2;
 }
 
 .find-card {
@@ -639,6 +641,14 @@ h2 {
 	border: var(--border-base);
 	border-radius: calc(var(--unit) / 2);
 	grid-column-end: span 11;
+	transition: all 150ms ease-in-out;
+}
+
+.find-card:hover {
+	// --background-color: var(--main-dark);
+	// --foreground-color: var(--main-bright);
+	color: var(--background-color);
+	background: var(--foreground-color);
 }
 
 .find-card:nth-child(odd) {
@@ -650,7 +660,7 @@ h2 {
 }
 
 .find-title {
-	display: inline-block;
+	// display: inline-block;
 	font-family: var(--secondary-font);
 	font-weight: 300;
 	font-size: var(--fontsize-d);
@@ -956,7 +966,7 @@ h2 {
 	.section {
 		display: grid;
 		grid-template-columns: var(--grid-col-setup);
-		gap: var(--unit);
+		gap: var(--gap-size);
 	}
 
 	// ** HOME - PROJECT ** //
@@ -998,4 +1008,157 @@ h2 {
 	.about-wrapper {
 		grid-column: 4 / span 6;
 	}
+
+	// ** HOME - FINDS ** //
+
+	.finds {
+		margin: 0 auto;
+		width: 64%;
+		padding-inline: 0;
+		gap: var(--gap-size);
+		// grid-template-columns: repeat(8, 1fr);
+	}
+
+	.finds h2,
+	.finds-wrapper {
+		grid-column: 1 / -1;
+		//testing alternate
+	}
+
+	.finds-wrapper {
+		// display: grid;
+		// grid-auto-flow: row;
+		// // grid-template-columns: repeat(auto-fit, minmax(20ch, max-content));
+		// grid-template-columns: minmax(min-content, 35.23%) minmax(35ch, auto);
+		// grid-auto-rows: auto;
+		// gap: var(--gap-size);
+		// // align-items: stretch;
+		position: relative;
+		margin-bottom: calc(var(--section-block-padding) * 2);
+	}
+
+	.finds-text {
+		// // grid-column: 1 / 4;
+		// // grid-column-start: span 3;
+		// // grid-column-end: span 3;
+		// // grid-row-start: 1;
+		// min-width: minmax(17ch 35%);
+		// // min-width: 17ch;
+		height: fit-content;
+		position: sticky;
+		top: var(--section-block-padding);
+	}
+
+	.finds-gallery {
+		margin: unset;
+		max-width: unset;
+		// // min-width: 65%;
+		// // grid-column: 3 / 9;
+		// // grid-column-start: 3;
+		// // grid-row-start: 1;
+		grid-template-columns: repeat(6, 1fr);
+		// // width: clamp(62.5%, 62.5%, 100%);
+		// width: 100%;
+		// // grid-column-start: auto;
+		// // grid-column-end: span 6;
+		gap: inherit;
+	}
+
+	.find-card {
+		background-color: var(--background-color);
+		z-index: 100;
+		&:last-of-type {
+			margin-bottom: calc(var(--section-block-padding));
+		}
+	}
+
+	.find-card:first-of-type {
+		grid-column: 2 / span 3;
+	}
+	.find-card:nth-child(2) {
+		grid-column: 4 / span 3;
+	}
+
+	.find-card:last-of-type {
+		grid-column: 1 / span 3;
+	}
+
+	//trying to find what we need here t o get this to work
+	// .finds-wrapper {
+	// 	// position: relative;
+	// 	display: flex;
+	// 	flex-wrap: wrap;
+	// 	// testing grid for fluid mobile to desktop
+	// 	// display: grid;
+	// 	// column-gap: var(--gap-size);
+	// 	// grid-auto-flow: row;
+	// 	// grid-template-columns: repeat(auto-fill, minmax(25ch, max(1fr, 25vw)));
+	// }
+
+	// .finds-text {
+	// 	// position: sticky;
+	// 	// top: 6rem;
+	// 	margin-bottom: var(--gap-size);
+	// 	flex: 1 1 25%;
+	// 	min-width: 22ch;
+	// 	// testing grid for fluid mobile to desktop
+	// 	// grid-column: 1 / -1;
+	// 	// grid-row: 1 / 2;
+	// }
+
+	// .finds-gallery {
+	// 	flex: 1 1 65%;
+	// 	margin: 0 auto;
+	// 	max-width: 35ch;
+	// 	display: grid;
+	// 	grid-template-columns: var(--grid-col-setup);
+	// 	// testing grid for fluid mobile to desktop
+	// 	// grid-column: 1 / -1;
+	// 	// grid-column-end: -1;
+	// 	// grid-row-start: 2;
+	// }
+
+	// .find-card {
+	// 	display: block;
+	// 	text-decoration: none;
+	// 	padding: var(--unit);
+	// 	margin-bottom: calc(2 * var(--unit));
+	// 	border: var(--border-base);
+	// 	border-radius: calc(var(--unit) / 2);
+	// 	grid-column-end: span 11;
+	// 	transition: all 150ms ease-in-out;
+	// }
+
+	// .find-card:hover {
+	// 	// --background-color: var(--main-dark);
+	// 	// --foreground-color: var(--main-bright);
+	// 	color: var(--background-color);
+	// 	background: var(--foreground-color);
+	// }
+
+	// .find-card:nth-child(odd) {
+	// 	grid-column-start: 2;
+	// }
+
+	// .find-card:nth-child(even) {
+	// 	grid-column-start: 1;
+	// }
+
+	// .find-title {
+	// 	// display: inline-block;
+	// 	font-family: var(--secondary-font);
+	// 	font-weight: 300;
+	// 	font-size: var(--fontsize-d);
+	// 	line-height: 1.25em;
+	// 	margin-bottom: calc(1.5 * var(--gap-size));
+	// }
+
+	// .find-credit {
+	// 	display: inline-block;
+	// 	text-transform: uppercase;
+	// }
+
+	// .find-publisher::before {
+	// 	content: "\2013  ";
+	// }
 }
