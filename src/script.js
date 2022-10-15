@@ -108,7 +108,7 @@ gsap.to(".project-gallery", {
 		start: "top top",
 		pin: true,
 		// anticipatePin: 1,
-		scrub: 1,
+		scrub: 0.25,
 		// base vertical scrolling on how wide the container is so it feels more natural.
 		end: "+=1200",
 	},

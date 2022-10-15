@@ -30,7 +30,7 @@ section.section.about
 			p.about-name Sami <span class="about-name-last">Moya Medina</span> 
 			p.about-pronouns #{about.pronouns}
 		.about-text
-			.about-synopsis #{about.synopsis}
+			.about-synopsis!=`${about.synopsis}`
 			a(href="/about" data-cursor-class="arrow").about-linkout  My experience + more
 section.section.finds#finds
 	h2 Interesting Finds
