@@ -1,0 +1,17 @@
+section.section.finds#finds
+	h2 Interesting Finds
+	.finds-wrapper 
+		.finds-text!=`${homepage.findSectionText}`
+		.finds-gallery 
+			each find in finds
+				a(href=`${find.link}` target="_blank" data-cursor-class="arrow").find-card
+					h4.find-title #{find.title}
+					.find-credits 
+						p.find-credit(class=`${authorClass} ${authorClass}`)
+						if find.author && find.publisher
+							p.find-credit.find-author #{find.author}
+							p.find-credit.find-publisher #{find.publisher}
+						else if !find.publisher
+							p.find-credit #{find.author}
+						else if !find.author
+							p.find-credit #{find.publisher}

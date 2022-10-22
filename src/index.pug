@@ -1,6 +1,7 @@
 ---
 title: Designer + Hobbyist Dev
 layout: '_base.pug'
+pageColorChoice: dark
 ---
 
 section.section.hero-home
@@ -8,7 +9,7 @@ section.section.hero-home
 	.hero-text With a love for digital and social design, I strive to keep giving while growing.
 section.section.work#work 
 	h2 My work
-	.project-gallery
+	.project-gallery 
 		each project in projects
 			.project-card 
 				a.proj-card-text(href=`projects/${project.slug}` data-cursor-class="arrow")
@@ -17,12 +18,7 @@ section.section.work#work
 					p Web Design
 				a.proj-card-img-wrapper(href=`projects/${project.slug}` data-cursor-class="arrow") 
 					img.proj-card-img(src="/_assets/medium_valivaryus_splash_01_5c339485d5.png", alt="Photo", srcset="")
-	//- ul
-	//- 	each project in projects
-	//- 		li #{project.title}
-	//- 		li #{project.prompt}
-section.section.sketchbook
-	h2 Sketchbook 
+include _sketchbook.pug
 section.section.about
 	h2 About Me
 	.about-wrapper
@@ -32,22 +28,5 @@ section.section.about
 		.about-text
 			.about-synopsis!=`${about.synopsis}`
 			a(href="/about" data-cursor-class="arrow").about-linkout  My experience + more
-section.section.finds#finds
-	h2 Interesting Finds
-	.finds-wrapper 
-		.finds-text!=`${homepage.findSectionText}`
-		.finds-gallery 
-			each find in finds
-				a(href=`${find.link}` target="_blank" data-cursor-class="arrow").find-card
-					h4.find-title #{find.title}
-					.find-credits 
-						p.find-credit(class=`${authorClass} ${authorClass}`)
-						if find.author && find.publisher
-							p.find-credit.find-author #{find.author}
-							p.find-credit.find-publisher #{find.publisher}
-						else if !find.publisher
-							p.find-credit #{find.author}
-						else if !find.author
-							p.find-credit #{find.publisher}
-
+include _finds.pug
 
