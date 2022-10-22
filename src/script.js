@@ -1,8 +1,25 @@
-// import { gsap } from "../node_modules/gsap";
-// import { CSSRulePlugin } from "../node_modules/gsap/CSSRulePlugin";
-// import { CustomEase } from "../node_modules/gsap/CustomEase";
-// import { ScrollTrigger } from "../node_modules/gsap/ScrollTrigger";
+import { gsap } from "../node_modules/gsap";
+import { CSSRulePlugin } from "../node_modules/gsap/CSSRulePlugin";
+import { CustomEase } from "../node_modules/gsap/CustomEase";
+import { ScrollTrigger } from "../node_modules/gsap/ScrollTrigger";
+import { SplitText } from "../node_modules/gsap/SplitText";
+import { ScrollSmoother } from "../node_modules/gsap/ScrollSmoother";
+gsap.registerPlugin(
+	ScrollTrigger,
+	ScrollSmoother,
+	CSSRulePlugin,
+	CustomEase,
+	SplitText
+);
 
+// create the scrollSmoother before your scrollTriggers
+ScrollSmoother.create({
+	wrapper: ".wrapper",
+	content: ".content",
+	// normalizeScroll: true,
+	smooth: 0.8, // how long (in seconds) it takes to "catch up" to the native scroll position
+	// effects: true, // looks for data-speed and data-lag attributes on elements
+});
 // ***** CHECKBOX ***** //
 
 const menuToggle = document.getElementById("toggle-nav-id");
@@ -97,80 +114,84 @@ cursorModifiers.forEach((cursorModifier) => {
 
 // ***** GSAP ***** //
 
-// gsap.from("#cursor", { ease: "linear", autoAlpha: 0 });
-
 // Proj Gallery, horizontal scroll
 let projCards = gsap.utils.toArray(".project-card");
-gsap.to(".project-gallery", {
+
+gsap.to(".project-card", {
 	xPercent: -100 * (projCards.length - 1),
 	scrollTrigger: {
+		anticipatePin: true,
 		trigger: ".project-gallery",
-		start: "top top",
 		pin: true,
-		// anticipatePin: 1,
-		scrub: 0.25,
-		// base vertical scrolling on how wide the container is so it feels more natural.
-		end: "+=1200",
+		ease: "none",
+		pinSpacing: true,
+		scrub: true,
+		invalidateOnRefresh: true,
+		onStart: ScrollTrigger.refresh(),
 	},
 });
 
 // Logo
-let logotypeSelector = ".logotype a";
-gsap.to(logotypeSelector, {
-	"--foreground-color": "var(--main-dark)",
-	scrollTrigger: {
-		trigger: ".work",
-		start: "top 5%",
-		toggleActions: "play reset play reset",
-	},
-});
+if (document.querySelector(".hero-home")) {
+	let logotypeSelector = ".logotype a";
 
-gsap.to(logotypeSelector, {
-	"--foreground-color": "var(--main-bright)",
-	scrollTrigger: {
-		trigger: ".work",
-		start: "bottom 3%",
-		toggleActions: "play reset play reset",
-	},
-});
+	gsap.to(logotypeSelector, {
+		"--foreground-color": `var(--background-color)`,
+		scrollTrigger: {
+			// markers: true,
+			trigger: ".work",
+			start: "top 5%",
+			// this is such a hacky way of making this stop overlapping the pin from earlier. i'm pretty sure I need to refresh the triggers so it includes  the pinspacers or something. idk man.
+			end: "169.25% 10%",
+			toggleActions: "play reset play reset",
+			invalidateOnRefresh: true,
+		},
+		duration: 0.5,
+	});
 
-// Nav Color Switch only if on desktop
-let mm = gsap.matchMedia();
-mm.add("(min-width:970px)", () => {
-	let navItemSelector = ".nav-item a";
-	gsap.to(navItemSelector, {
-		"--foreground-color": "var(--main-dark)",
-		borderColor: "var(--foreground-color)",
-		scrollTrigger: {
-			trigger: ".work",
-			start: "top 10%",
-			end: "bottom 10%",
-			toggleActions: "play reset play reset",
-		},
+	// Nav Color Switch only if on desktop
+	let mm = gsap.matchMedia();
+	mm.add("(min-width:970px)", () => {
+		let navItemSelector = ".nav-item a";
+
+		gsap.to(navItemSelector, {
+			"--foreground-color": `var(--background-color)`,
+			scrollTrigger: {
+				trigger: ".work",
+				start: "top 10%",
+				end: "169.25% 10%",
+				toggleActions: "play reset play reset",
+				invalidateOnRefresh: true,
+			},
+			duration: 0.5,
+		});
 	});
-	gsap.to(navItemSelector, {
-		"--foreground-color": "var(--main-bright)",
-		borderColor: "var(--foreground-color)",
-		scrollTrigger: {
-			trigger: ".work",
-			start: "bottom 10%",
-			toggleActions: "play reset play reset",
-		},
-	});
-});
+}
 
 // For Home-page Hero Text
 
+ScrollTrigger.create({
+	trigger: ".hero-home",
+	start: "top top",
+	pin: true,
+	pinSpacing: false,
+});
+
 gsap.to(".hero-text", {
 	y: "16%",
+	ease: "linear",
 	scale: ".98",
 	opacity: 0,
 	scrollTrigger: {
 		trigger: ".work",
 		scrub: 0.5,
-		// markers: true,
 		start: "top 87%",
 		end: "top 50%",
 		toggleActions: "play pause pause reverse",
+		invalidateOnRefresh: true,
 	},
 });
+
+// window.addEventListener("resize", () => {
+// 	ScrollTrigger.refresh();
+// });
