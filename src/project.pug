@@ -7,9 +7,23 @@ pagination:
 permalink: '| projects/#{p.slug}/index.html'
 eleventyComputed:
   title: '| #{p.title}'
+  pageColorChoice: '| #{p.pageColor.toLowerCase()}'
 ---
+- let coverImgFilename = `${p.cover.image.data.attributes.hash}${p.cover.image.data.attributes.ext}`
+- let coverImgAlt = `${p.cover.image.data.attributes.alternativeText}`
 
-h1 #{p.title}
-
-section.proj-header
-	p #{p.prompt}
+section.section.hero-project
+  h2.p-hero-title #{p.title}
+section.section.p-cover 
+  .p-cover-img-wrapper
+    img.p-cover-img(src=`/_assets/${coverImgFilename}` alt=`${coverImgAlt}`) 
+section.section.p-text
+  h3.p-prompt #{p.prompt}
+  .p-summary!=`${p.summary}`
+section.section.p-outcomes
+  each outcome in p.outcomes
+    - let outcomeFilename = `${outcome.image.data.attributes.hash}${outcome.image.data.attributes.ext}`
+    - let outcomeAlt = `${outcome.image.data.attributes.alternativeText}`
+    .p-outcome-img-wrapper(class=`col${outcome.area.Start} ${outcome.area.End.toLowerCase()}`)
+      img.p-outcome-img(src=`/_assets/${outcomeFilename}` alt=`${outcomeAlt}`)
+nav.section.p-pagination 
