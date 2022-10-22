@@ -5,5 +5,4 @@ title: About Me
 
 section.about-hero 
 	h2 About Me
-section.about-content 
-	p #{about.fullContent}
+section.about-content!=`${about.fullContent}`
