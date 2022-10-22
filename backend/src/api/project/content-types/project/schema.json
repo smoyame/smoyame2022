@@ -25,14 +25,29 @@
       "type": "uid",
       "targetField": "title"
     },
-    "outcomes": {
-      "type": "dynamiczone",
-      "components": ["content.media"]
-    },
-    "coverImg": {
+    "cover": {
       "type": "component",
       "repeatable": false,
       "component": "content.media"
+    },
+    "pageColor": {
+      "type": "enumeration",
+      "enum": [
+        "Dark",
+        "Bright",
+        "Pensive",
+        "Poder",
+        "Vibing",
+        "Alertness",
+        "Disfruta",
+        "Zesty"
+      ],
+      "default": "Dark"
+    },
+    "outcomes": {
+      "type": "component",
+      "repeatable": true,
+      "component": "content.outcomes"
     }
   }
 }

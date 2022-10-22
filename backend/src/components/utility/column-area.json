@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_utility_column_areas",
+  "info": {
+    "displayName": "Column Area",
+    "icon": "arrows-alt-h"
+  },
+  "options": {},
+  "attributes": {
+    "Start": {
+      "type": "integer",
+      "max": 6,
+      "min": 1,
+      "required": false,
+      "default": 1
+    },
+    "End": {
+      "type": "enumeration",
+      "enum": [
+        "Quarter",
+        "Half",
+        "Twothirds",
+        "End"
+      ],
+      "default": "End"
+    }
+  }
+}
