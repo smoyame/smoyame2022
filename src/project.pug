@@ -9,11 +9,26 @@ eleventyComputed:
   title: '| #{p.title}'
   pageColorChoice: '| #{p.pageColor.toLowerCase()}'
 ---
+
+- let orderedProjects = ordering.projects;
+- let prev;
+- let next;
+- for (let i=0; i<orderedProjects.length; i++) {
+-   let chosenProj = orderedProjects[i].item.data.attributes;
+-   if (p.title == chosenProj.title) {
+-     prevProj = orderedProjects[i-1];
+-     nextProj = orderedProjects[i+1];
+-   }
+- }
 - let coverImgFilename = `${p.cover.image.data.attributes.hash}${p.cover.image.data.attributes.ext}`
 - let coverImgAlt = `${p.cover.image.data.attributes.alternativeText}`
-
+- let tags = p.Tags.data
 section.section.hero-project
   h2.p-hero-title #{p.title}
+  p.p-hero-tags 
+    each tag in tags
+      - let discipline = tag.attributes.discipline
+      span.p-tag #{discipline}
 section.section.p-cover 
   .p-cover-img-wrapper
     img.p-cover-img(src=`/_assets/${coverImgFilename}` alt=`${coverImgAlt}`) 
@@ -27,3 +42,13 @@ section.section.p-outcomes
     .p-outcome-img-wrapper(class=`col${outcome.area.Start} ${outcome.area.End.toLowerCase()}`)
       img.p-outcome-img(src=`/_assets/${outcomeFilename}` alt=`${outcomeAlt}`)
 nav.section.p-pagination 
+  h3.p-more
+  ul.p-pagination-wrapper
+    - if (prevProj) {
+      li
+        a.p-next Prev <span>#{prevProj.item.data.attributes.title}</span>
+    - }
+    - if (nextProj) {
+      li
+        a.p-prev Next <span>#{nextProj.item.data.attributes.title}</span>
+    - }

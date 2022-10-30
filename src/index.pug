@@ -9,16 +9,25 @@ section.section.hero-home
 	.hero-text With a love for digital and social design, I strive to keep giving while growing.
 section.section.work#work 
 	h2 My work
-	.project-gallery 
-		each project in projects
-			.project-card 
-				a.proj-card-text(href=`projects/${project.slug}` data-cursor-class="arrow")
-					h3.proj-card-title #{project.title}
-				.proj-card-tag 
-					p Web Design
-				a.proj-card-img-wrapper(href=`projects/${project.slug}` data-cursor-class="arrow") 
-					img.proj-card-img(src="/_assets/medium_valivaryus_splash_01_5c339485d5.png", alt="Photo", srcset="")
-include _sketchbook.pug
+	.project-gallery
+		- const wantedOrder = ordering.projects
+		- const givenOrder = projects 
+		- for (let i=0; i < wantedOrder.length; i++) {
+		-		let wantedProj = wantedOrder[i].item.data.attributes;
+		-		for (let j=0; j < givenOrder.length; j++) {
+		-			let givenProj = givenOrder[j];
+		-			if (givenProj.title == wantedProj.title) {
+						.project-card 
+							a.proj-card-text(href=`projects/${wantedProj.slug}` data-cursor-class="arrow")
+								h3.proj-card-title #{wantedProj.title}
+							.proj-card-tag 
+								p #{givenProj.Tags.data[0].attributes.discipline}
+							a.proj-card-img-wrapper(href=`projects/${wantedProj.slug}` data-cursor-class="arrow") 
+								img.proj-card-img(src="/_assets/medium_valivaryus_splash_01_5c339485d5.png", alt="Photo", srcset="")
+		-			}
+		-		}
+		-	}
+include _includes/_sketchbook.pug
 section.section.about
 	h2 About Me
 	.about-wrapper
@@ -28,5 +37,5 @@ section.section.about
 		.about-text
 			.about-synopsis!=`${about.synopsis}`
 			a(href="/about" data-cursor-class="arrow").about-linkout  My experience + more
-include _finds.pug
+include _includes/_finds.pug
 

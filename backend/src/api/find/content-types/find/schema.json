@@ -4,7 +4,8 @@
   "info": {
     "singularName": "find",
     "pluralName": "finds",
-    "displayName": "finds"
+    "displayName": "Finds",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true

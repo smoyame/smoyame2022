@@ -4,7 +4,8 @@
   "info": {
     "singularName": "sketch",
     "pluralName": "sketches",
-    "displayName": "sketchbook"
+    "displayName": "Sketchbook",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -12,14 +13,15 @@
   "pluginOptions": {},
   "attributes": {
     "entry": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     }
   }
 }

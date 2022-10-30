@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_utility_items",
+  "info": {
+    "displayName": "Items",
+    "icon": "book",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "item": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::project.project"
+    },
+    "itemName": {
+      "type": "string"
+    }
+  }
+}

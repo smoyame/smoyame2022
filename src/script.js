@@ -4,20 +4,24 @@ import { CustomEase } from "../node_modules/gsap/CustomEase";
 import { ScrollTrigger } from "../node_modules/gsap/ScrollTrigger";
 import { SplitText } from "../node_modules/gsap/SplitText";
 import { ScrollSmoother } from "../node_modules/gsap/ScrollSmoother";
+import { ScrollToPlugin } from "../node_modules/gsap/ScrollToPlugin";
 gsap.registerPlugin(
 	ScrollTrigger,
 	ScrollSmoother,
 	CSSRulePlugin,
 	CustomEase,
-	SplitText
+	SplitText,
+	ScrollToPlugin
 );
 
 // create the scrollSmoother before your scrollTriggers
-ScrollSmoother.create({
+let smoother = ScrollSmoother.create({
 	wrapper: ".wrapper",
 	content: ".content",
-	// normalizeScroll: true,
-	smooth: 0.8, // how long (in seconds) it takes to "catch up" to the native scroll position
+	// onStop: ScrollTrigger.refresh(),
+	normalizeScroll: true,
+	smooth: 0.8,
+	smoothTouch: false, // how long (in seconds) it takes to "catch up" to the native scroll position
 	// effects: true, // looks for data-speed and data-lag attributes on elements
 });
 // ***** CHECKBOX ***** //
@@ -35,18 +39,28 @@ let bodyNoScroll = () => {
 };
 menuToggle.addEventListener("click", bodyNoScroll);
 
-// ***** trying to close nav when ID links are clicked ***** //
+// ***** close nav when same-page ID links are clicked ***** //
+let windowQuery = window.matchMedia("(min-width: 980px)");
+if (windowQuery) {
+	console.log("true");
+} else {
+	console.log("false");
+}
+let closeMenu = () => {
+	if (windowQuery) {
+		let nodeLinks = document.querySelectorAll('.nav-item a[href*="/#"]');
+		let links = Array.from(nodeLinks);
 
-let nodeLinks = document.querySelectorAll('.nav-item a[href*="/#"]');
-let links = Array.from(nodeLinks);
+		links.forEach(function (item) {
+			item.addEventListener("click", () => {
+				menuToggle.click();
+			});
+		});
+	}
+};
+closeMenu();
 
-links.forEach(function (item) {
-	item.addEventListener("click", () => {
-		menuToggle.click();
-	});
-});
-
-// Cursor
+// ***** Cursor ***** //
 gsap.from("#cursor", { ease: "linear", autoAlpha: 0 });
 
 // ▶ cojea gabriel - thanks a bunch dude - cursor ◀
@@ -116,20 +130,62 @@ cursorModifiers.forEach((cursorModifier) => {
 
 // Proj Gallery, horizontal scroll
 let projCards = gsap.utils.toArray(".project-card");
+let projCardAmnt = document.querySelectorAll(".project-card");
 
-gsap.to(".project-card", {
-	xPercent: -100 * (projCards.length - 1),
+gsap.to(".project-gallery", {
+	xPercent: -1 * (100 - 100 / projCardAmnt.length),
 	scrollTrigger: {
 		anticipatePin: true,
 		trigger: ".project-gallery",
 		pin: true,
 		ease: "none",
-		pinSpacing: true,
+		// scroller: ".wrapper",
+		// preventOverlaps: true,
+		// pinSpacing: true,
+		// fastScrollEnd: true,
 		scrub: true,
 		invalidateOnRefresh: true,
-		onStart: ScrollTrigger.refresh(),
 	},
 });
+// *** compensating for the clicks scrollSmoother prevents since its transformed , with an animation on click *** //
+document
+	.querySelector("li.nav-item:nth-child(1) > a:nth-child(1)")
+	.addEventListener("click", (e) => {
+		// // scroll to the spot where .box-c is in the center.
+		// // parameters: element, smooth, position
+		// smoother.scrollTo(".work", true, "top top");
+		e.preventDefault();
+		// // or you could animate the scrollTop:
+		gsap.to(smoother, {
+			scrollTop: smoother.offset(".work", "top top"),
+			// scrollTo: ".work"
+			duration: 1,
+			ease: "power3.out",
+			// scrollTrigger: {
+			// 	preventOverlaps: true
+			// },
+			// onComplete: console.log("Closed menu."),
+		});
+	});
+
+document
+	.querySelector("li.nav-item:nth-child(4) > a:nth-child(1)")
+	.addEventListener("click", (e) => {
+		console.log("scroll");
+		e.preventDefault();
+		// smoother.scrollTo(".finds", true, "top top");
+		gsap.to(smoother, {
+			scrollTop: smoother.offset(".finds", "top top"),
+			// scrollTo: ".finds",
+			duration: 1,
+			ease: "power3.out",
+			// scrollTrigger: {
+			// 	preventOverlaps: true,
+			// },
+			// onComplete: console.log("Closed menu."),
+		});
+		// smoother.scrollTo(".finds", true, "top 1%");
+	});
 
 // Logo
 if (document.querySelector(".hero-home")) {
@@ -151,7 +207,7 @@ if (document.querySelector(".hero-home")) {
 
 	// Nav Color Switch only if on desktop
 	let mm = gsap.matchMedia();
-	mm.add("(min-width:970px)", () => {
+	mm.add("(min-width:980px)", () => {
 		let navItemSelector = ".nav-item a";
 
 		gsap.to(navItemSelector, {

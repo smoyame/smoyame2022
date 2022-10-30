@@ -1,0 +1,21 @@
+{
+  "kind": "singleType",
+  "collectionName": "orderings",
+  "info": {
+    "singularName": "ordering",
+    "pluralName": "orderings",
+    "displayName": "Ordering",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "projects": {
+      "type": "component",
+      "repeatable": true,
+      "component": "utility.items"
+    }
+  }
+}
