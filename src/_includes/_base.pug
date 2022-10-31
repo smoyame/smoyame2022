@@ -7,7 +7,7 @@ html(lang="en")
 		link(rel="stylesheet", href="/style.css")
 		title SMOYA.ME | #{title}
 		noscript
-			style.
+			style. 
 				.container, #cursor {
 						visibility: visible; 
 				}
@@ -21,8 +21,4 @@ html(lang="en")
 					include _footer.pug
 		#cursor(aria-hidden="true" data-scroll-sticky)
 			.cursor__circle(aria-hidden="true")
-		//- script(src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js")
-		//- script(src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/ScrollTrigger.min.js") 
-		//- script(src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/CustomEase.min.js") 
-		//- script(src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/CSSRulePlugin.min.js") 
 		script(src="/bundle.js")

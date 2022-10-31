@@ -45,7 +45,7 @@
 	--h2-space-below: 2rem;
 
 	--grid-col-setup: repeat(12, 1fr);
-	--gap-size: 1.818rem;
+	--gap-size: clamp(0.25rem, calc(0.818rem + 1vw), 1.818rem);
 
 	// --proj-card-height: calc(25vh + 25vw);
 	// Actual base settings
@@ -86,7 +86,7 @@ body {
 
 body::after {
 	//noise bg
-	// content: "";
+	content: "";
 	display: block;
 	z-index: 999999;
 	position: fixed;
@@ -101,8 +101,8 @@ body::after {
 	mix-blend-mode: color-burn;
 	// opacity: 0.75;
 	filter: grayscale(90%) contrast(190%) brightness(100%);
-	animation: bg-animation 0.2s infinite;
-	opacity: 0.95;
+	// animation: bg-animation 0.2s infinite;
+	opacity: 0.6;
 }
 
 .header,
@@ -279,16 +279,32 @@ p:not([class], .footer-form-label ~ p) {
 	}
 }
 
+.container {
+	visibility: hidden;
+}
+
 .main {
 	position: relative;
 }
 
 // ***** Header ***** //
 
+@keyframes fade-in {
+	0% {
+		opacity: 0%;
+	}
+
+	100% {
+		opacity: 100%;
+	}
+}
+
 .header {
 	position: fixed;
 	z-index: 100;
 	pointer-events: none;
+	animation: fade-in 2.5s cubic-bezier(0, 1, 0.75, 1);
+	animation-fill-mode: forwards;
 }
 
 // ** NAV ** //
@@ -538,25 +554,34 @@ h2 {
 	padding-top: 0;
 	min-height: calc(82vh + 4vw);
 	padding-bottom: calc(var(--unit) * 2);
-	// desktop ?
 	display: grid;
 	grid-template-columns: var(--grid-col-setup);
+	grid-template-rows: 1fr max-content;
 	gap: var(--gap-size);
 	align-items: end;
 	position: sticky;
 	top: 0;
 }
 
+.job-title {
+	grid-column: 1 / -1;
+	margin-left: clamp(0%, calc(54vw - 16rem), 25.25%);
+	margin-top: var(--unit);
+	text-transform: uppercase;
+	line-height: 1rem;
+	letter-spacing: 0.035em;
+	align-self: start;
+}
+
 .hero-text {
 	font-size: var(--fontsize-hero);
 	letter-spacing: -0.0125em;
-	line-height: 1.125em;
+	line-height: 1.1em;
 	font-family: var(--primary-font);
 	font-weight: 300;
 	text-transform: uppercase;
 	margin-left: clamp(0%, calc(54vw - 16rem), 25.25%);
 	grid-column: 1 / -1;
-	// transition: grid-column 4s ease-in;
 	z-index: -4;
 }
 
@@ -569,6 +594,7 @@ h2 {
 	padding-inline: 0;
 	overflow-x: hidden;
 	width: 100vw;
+	max-width: 100%;
 	border-radius: 0.5rem 0.5rem 0 0;
 }
 
@@ -657,9 +683,6 @@ h2 {
 }
 
 // ** HOME - ABOUT ** //
-
-// .about {
-// }
 
 .about-wrapper {
 	display: flex;
@@ -889,6 +912,14 @@ h2 {
 	padding: 1rem 2rem;
 }
 
+.footer-bar::after {
+	content: "";
+	display: block;
+	height: 4rem;
+	width: 100%;
+	background-color: (--foreground-color);
+}
+
 // ***** Indiv Project Page ***** //
 
 .p-hero-title,
@@ -980,6 +1011,110 @@ h2 {
 .p-outcome-img-wrapper {
 	overflow: hidden;
 	border-radius: 0.5rem;
+}
+
+// Pagination
+
+.p-more {
+	display: none;
+	text-align: center;
+	text-transform: uppercase;
+	font-weight: 300;
+	font-size: 1rem;
+}
+
+.p-more,
+.p-pagination-wrapper {
+	grid-column: 1 / -1;
+}
+
+.p-pagination-wrapper {
+	grid-column: 4 / span 6;
+	display: flex;
+	column-gap: var(--unit);
+	flex-direction: row;
+	flex-wrap: wrap;
+	padding-left: 0;
+	// margin-inline: clamp(0%, calc(38vw - 10rem), 25.5%);
+}
+
+.p-prev-wrapper,
+.p-next-wrapper,
+.p-more-item {
+	display: block;
+}
+
+// Both
+
+.paginate-label {
+	font-family: var(--secondary-font);
+	font-size: calc(var(--fontsize-c) * 1);
+	display: flex;
+}
+
+.p-more-item {
+	text-decoration: none;
+}
+
+// Prev
+
+.p-prev-wrapper {
+	order: 1;
+	text-align: right;
+	padding-block: 1rem;
+	flex: 1 1 30%;
+	min-width: 30%;
+	min-width: 14ch;
+	max-width: max-content;
+}
+
+.p-prev-wrapper .paginate-label {
+	display: flex;
+	justify-content: space-between;
+}
+
+.p-prev-wrapper .p-paginate-proj::before {
+	content: "← ";
+	display: inline-block;
+}
+
+// Next
+
+.p-next-wrapper {
+	order: 2;
+	flex: 2 2 66%;
+	min-width: 66%;
+}
+
+.p-next-wrapper .p-more-item {
+	border: 2px solid var(--foreground-color);
+	border-radius: 0.5rem;
+	padding: 1rem;
+	transition: all 150ms ease-in-out;
+	&:hover {
+		color: var(--background-color);
+		background-color: var(--foreground-color);
+	}
+
+	& .paginate-label {
+		display: flex;
+		justify-content: space-between;
+	}
+}
+
+// .p-next-wrapper .paginate-label {
+// 	justify-self: space-between;
+// }
+
+.p-next-wrapper .paginate-label::after {
+	content: "→";
+	display: inline-block;
+}
+
+.p-next-wrapper:empty {
+	border: unset;
+	border-radius: unset;
+	border-left: 2px solid var(--foreground-color);
 }
 
 // ***** Desktop ***** //
@@ -1148,14 +1283,9 @@ h2 {
 
 	.project-gallery {
 		grid-column: 1 / -1;
-		// width: 100%;
 	}
 
 	.project-card {
-		// min-width: 60vw;
-		// max-width: unset;
-		// width: 60vw;
-		// margin-block: 21vw 11vw;
 		margin-top: auto;
 		display: flex;
 		flex-wrap: wrap;
@@ -1234,6 +1364,12 @@ h2 {
 
 	.find-card:last-of-type {
 		grid-column: 1 / span 3;
+	}
+
+	// *** Footer Bar *** //
+
+	.footer-bar::after {
+		content: none;
 	}
 
 	// ***** Indiv Proj Pages ***** //

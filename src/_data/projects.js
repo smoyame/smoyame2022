@@ -3,7 +3,7 @@ const axios = require("../../node_modules/axios");
 module.exports = async () => {
 	try {
 		const projGet = await axios.get(
-			"http://localhost:1337/api/projects?populate[cover][populate]=*,image&populate[outcomes][populate]=*&populate[Tags][populate]=*"
+			"http://localhost:1337/api/projects?populate[cover][populate]=*,image&populate[outcomes][populate]=*&populate[tags][populate]=discipline"
 		);
 		// axios delivers it as JS object already thank goodness
 

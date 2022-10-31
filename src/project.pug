@@ -22,12 +22,12 @@ eleventyComputed:
 - }
 - let coverImgFilename = `${p.cover.image.data.attributes.hash}${p.cover.image.data.attributes.ext}`
 - let coverImgAlt = `${p.cover.image.data.attributes.alternativeText}`
-- let tags = p.Tags.data
+- let projTags = p.tags.data
 section.section.hero-project
   h2.p-hero-title #{p.title}
-  p.p-hero-tags 
-    each tag in tags
-      - let discipline = tag.attributes.discipline
+  p.p-hero-tags
+    each ptag in projTags
+      - let discipline = ptag.attributes.discipline
       span.p-tag #{discipline}
 section.section.p-cover 
   .p-cover-img-wrapper
@@ -42,13 +42,16 @@ section.section.p-outcomes
     .p-outcome-img-wrapper(class=`col${outcome.area.Start} ${outcome.area.End.toLowerCase()}`)
       img.p-outcome-img(src=`/_assets/${outcomeFilename}` alt=`${outcomeAlt}`)
 nav.section.p-pagination 
-  h3.p-more
+  h3.p-more See more
   ul.p-pagination-wrapper
-    - if (prevProj) {
-      li
-        a.p-next Prev <span>#{prevProj.item.data.attributes.title}</span>
-    - }
-    - if (nextProj) {
-      li
-        a.p-prev Next <span>#{nextProj.item.data.attributes.title}</span>
-    - }
+    li.p-next-wrapper
+      - if (nextProj) {
+      a.p-more-item(href=`/projects/${nextProj.item.data.attributes.slug}` data-cursor-class="arrow")
+        .paginate-label Next Project
+        .p-paginate-proj #{nextProj.item.data.attributes.title}
+      - }
+    li.p-prev-wrapper
+      - if (prevProj) {
+        a.p-more-item(href=`/projects/${prevProj.item.data.attributes.slug}` data-cursor-class="arrow")
+          .p-paginate-proj Prev | #{prevProj.item.data.attributes.title}
+      - }

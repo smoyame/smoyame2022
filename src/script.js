@@ -14,6 +14,8 @@ gsap.registerPlugin(
 	ScrollToPlugin
 );
 
+gsap.from(".container", { ease: "linear", autoAlpha: 0 });
+
 // create the scrollSmoother before your scrollTriggers
 let smoother = ScrollSmoother.create({
 	wrapper: ".wrapper",
@@ -41,11 +43,6 @@ menuToggle.addEventListener("click", bodyNoScroll);
 
 // ***** close nav when same-page ID links are clicked ***** //
 let windowQuery = window.matchMedia("(min-width: 980px)");
-if (windowQuery) {
-	console.log("true");
-} else {
-	console.log("false");
-}
 let closeMenu = () => {
 	if (windowQuery) {
 		let nodeLinks = document.querySelectorAll('.nav-item a[href*="/#"]');
@@ -147,45 +144,46 @@ gsap.to(".project-gallery", {
 		invalidateOnRefresh: true,
 	},
 });
-// *** compensating for the clicks scrollSmoother prevents since its transformed , with an animation on click *** //
-document
-	.querySelector("li.nav-item:nth-child(1) > a:nth-child(1)")
-	.addEventListener("click", (e) => {
-		// // scroll to the spot where .box-c is in the center.
-		// // parameters: element, smooth, position
-		// smoother.scrollTo(".work", true, "top top");
-		e.preventDefault();
-		// // or you could animate the scrollTop:
-		gsap.to(smoother, {
-			scrollTop: smoother.offset(".work", "top top"),
-			// scrollTo: ".work"
-			duration: 1,
-			ease: "power3.out",
-			// scrollTrigger: {
-			// 	preventOverlaps: true
-			// },
-			// onComplete: console.log("Closed menu."),
-		});
-	});
+// *** compensating for the clicks scrollSmoother prevents since it's transformed , with an animation on click *** //
 
-document
-	.querySelector("li.nav-item:nth-child(4) > a:nth-child(1)")
-	.addEventListener("click", (e) => {
-		console.log("scroll");
-		e.preventDefault();
-		// smoother.scrollTo(".finds", true, "top top");
-		gsap.to(smoother, {
-			scrollTop: smoother.offset(".finds", "top top"),
-			// scrollTo: ".finds",
-			duration: 1,
-			ease: "power3.out",
-			// scrollTrigger: {
-			// 	preventOverlaps: true,
-			// },
-			// onComplete: console.log("Closed menu."),
-		});
-		// smoother.scrollTo(".finds", true, "top 1%");
+let currentURL = window.location.pathname;
+let smoothAnchorLink = (selector) => {
+	gsap.to(smoother, {
+		scrollTop: smoother.offset(selector, "top top"),
+		duration: 1,
+		ease: "power3.out",
 	});
+};
+let whenFromSubd = (anchorLink, selector) => {
+	if (window.location.href.indexOf(anchorLink) > -1) {
+		smoothAnchorLink(selector);
+	}
+};
+const findsLink = document.querySelector("[href='/#finds']");
+const workLink = document.querySelector("[href='/#work']");
+
+let workNav = () => {
+	workLink.addEventListener("click", (e) => {
+		if (currentURL == "/") {
+			e.preventDefault();
+		}
+		smoothAnchorLink(".work");
+	});
+};
+
+let findNav = () => {
+	findsLink.addEventListener("click", (e) => {
+		if (currentURL == "/") {
+			e.preventDefault();
+		}
+		smoothAnchorLink(".finds");
+	});
+};
+
+whenFromSubd("/#work", ".work");
+whenFromSubd("/#finds", ".finds");
+workNav();
+findNav();
 
 // Logo
 if (document.querySelector(".hero-home")) {

@@ -44,16 +44,16 @@
       ],
       "default": "Dark"
     },
-    "outcomes": {
-      "type": "component",
-      "repeatable": true,
-      "component": "content.outcomes"
-    },
-    "Tags": {
+    "tags": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::domain.domain",
       "inversedBy": "Projects"
+    },
+    "outcomes": {
+      "type": "component",
+      "repeatable": true,
+      "component": "content.outcomes"
     }
   }
 }

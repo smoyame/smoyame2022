@@ -5,7 +5,7 @@ pageColorChoice: dark
 ---
 
 section.section.hero-home
-	//- .job-title Designer + Digital Enthusiast
+	.job-title Designer + Digital Enthusiast
 	.hero-text With a love for digital and social design, I strive to keep giving while growing.
 section.section.work#work 
 	h2 My work
@@ -21,13 +21,13 @@ section.section.work#work
 							a.proj-card-text(href=`projects/${wantedProj.slug}` data-cursor-class="arrow")
 								h3.proj-card-title #{wantedProj.title}
 							.proj-card-tag 
-								p #{givenProj.Tags.data[0].attributes.discipline}
+								p #{givenProj.tags.data[0].attributes.discipline}
 							a.proj-card-img-wrapper(href=`projects/${wantedProj.slug}` data-cursor-class="arrow") 
 								img.proj-card-img(src="/_assets/medium_valivaryus_splash_01_5c339485d5.png", alt="Photo", srcset="")
 		-			}
 		-		}
 		-	}
-include _includes/_sketchbook.pug
+//- include _includes/_sketchbook.pug
 section.section.about
 	h2 About Me
 	.about-wrapper
