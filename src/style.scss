@@ -4,8 +4,6 @@
 :root {
 	// Global Variables
 	--primary-font: "PP Mori", Poppins, Helvetica, Arial, sans-serif;
-	// --primary-font: "Neuething Sans Semi-expanded", Poppins, Helvetica, Arial,
-	// 	sans-serif;
 	--secondary-font: "PP Editorial New", "Playfair Display", Cambria, Cochin,
 		Georgia, Times, "Times New Roman", serif;
 	--tertiary-font: "Dico Mono Script", "Courier New", Courier, monospace;
@@ -47,7 +45,6 @@
 	--grid-col-setup: repeat(12, 1fr);
 	--gap-size: clamp(0.25rem, calc(0.818rem + 1vw), 1.818rem);
 
-	// --proj-card-height: calc(25vh + 25vw);
 	// Actual base settings
 	font-size: var(--fontsize-base);
 }
