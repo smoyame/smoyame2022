@@ -1080,7 +1080,8 @@ h2 {
 .proj-card-img-wrapper,
 .p-cover-img-wrapper,
 .p-outcome-img-wrapper {
-  filter: drop-shadow(0 0.5rem 0.75rem rgba(0, 0, 0, 0.06125));
+  transform: translate(0);
+  box-shadow: 0 0.5rem 0.75rem rgba(0, 0, 0, 0.0625);
 }
 
 .p-cover-img-wrapper,
