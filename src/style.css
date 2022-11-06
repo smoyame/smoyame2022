@@ -195,15 +195,21 @@ body {
   }
 }
 body::after {
+  content: "";
   display: block;
   position: fixed;
   top: 0;
   left: 0;
-  height: 1px;
-  width: 1px;
+  height: 100%;
+  width: 100%;
   transform-origin: 50% 50%;
   rotate: 1deg;
+  scale: 1.19;
   pointer-events: none;
+  background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MDAiIGhlaWdodD0iNTAwIj4KICAgIDxmaWx0ZXIgaWQ9Im5vaXNlIiB4PSIwIiB5PSIwIj4KICAgICAgPGZlVHVyYnVsZW5jZSB0eXBlPSJmcmFjdGFsTm9pc2UiIGJhc2VGcmVxdWVuY3k9IjAuNjUiIG51bU9jdGF2ZXM9IjMiIHN0aXRjaFRpbGVzPSJzdGl0Y2giLz4KICAgICAgPGZlQmxlbmQgbW9kZT0ic2NyZWVuIi8+CiAgICA8L2ZpbHRlcj4KICAgIDxyZWN0IHdpZHRoPSI1MDAiIGhlaWdodD0iNTAwIiBmaWx0ZXI9InVybCgjbm9pc2UpIiBvcGFjaXR5PSIwLjUiLz4KPC9zdmc+");
+  mix-blend-mode: color-burn;
+  filter: grayscale(90%) contrast(160%) brightness(100%);
+  opacity: 0.5;
 }
 
 .header,
