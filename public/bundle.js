@@ -13451,8 +13451,7 @@ let projCardAmnt = document.querySelectorAll(".project-card");
 
 // let sections = gsap.utils.toArray(".project-card");
 // let gallDist = -100 * (projCardAmnt.length - 1);
-let projTL = _node_modules_gsap__WEBPACK_IMPORTED_MODULE_0__.gsap.timeline({});
-projTL.to(".project-gallery", {
+_node_modules_gsap__WEBPACK_IMPORTED_MODULE_0__.gsap.to(".project-gallery", {
 	// xPercent: `${gallDist}`,
 	xPercent: -1 * (100 - 100 / projCardAmnt.length),
 	scrollTrigger: {
@@ -13517,8 +13516,8 @@ if (document.querySelector(".hero-home")) {
 			trigger: ".work",
 			start: "top 5%",
 			// this is such a hacky way of making this stop overlapping the pin from earlier. i'm pretty sure I need to refresh the triggers so it includes  the pinspacers or something. idk man.
-			// end: "169.25% 10%",
-			end: "bottom 5%",
+			end: "169.25% 10%",
+			// end: "bottom 5%",
 			toggleActions: "play reset play reset",
 			invalidateOnRefresh: true,
 		},
@@ -13535,8 +13534,8 @@ if (document.querySelector(".hero-home")) {
 			scrollTrigger: {
 				trigger: ".work",
 				start: "top 10%",
-				// end: "169.25% 10%",
-				end: "bottom 9%",
+				end: "169.25% 10%",
+				// end: "bottom 9%",
 				toggleActions: "play reset play reset",
 				invalidateOnRefresh: true,
 			},
