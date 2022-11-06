@@ -335,7 +335,6 @@ p:not([class], .footer-form-label ~ p) {
 	color: var(--foreground-color);
 	font-weight: 600;
 	// mix-blend-mode: difference;
-	z-index: 999;
 }
 
 .nav {
@@ -1365,7 +1364,6 @@ h2 {
 
 	.find-card {
 		background-color: var(--background-color);
-		z-index: 100;
 		&:last-of-type {
 			margin-bottom: calc(var(--section-block-padding));
 		}

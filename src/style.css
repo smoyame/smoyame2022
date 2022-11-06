@@ -429,7 +429,6 @@ p:not([class], .footer-form-label ~ p) {
 .logotype a {
   color: var(--foreground-color);
   font-weight: 600;
-  z-index: 999;
 }
 
 .nav {
@@ -1369,7 +1368,6 @@ body:not(.no-scroll) .toggle-checkbox:not(:checked) ~ .nav-wrapper .nav-item a {
   }
   .find-card {
     background-color: var(--background-color);
-    z-index: 100;
   }
   .find-card:last-of-type {
     margin-bottom: calc(var(--section-block-padding));
