@@ -16,17 +16,17 @@ gsap.registerPlugin(
 
 gsap.from(".container", { ease: "linear", autoAlpha: 0 });
 
-// // create the scrollSmoother before your scrollTriggers
-// let smoother = ScrollSmoother.create({
-// 	wrapper: ".wrapper",
-// 	content: ".content",
-// 	// onStop: ScrollTrigger.refresh(),
-// 	normalizeScroll: true,
-// 	smooth: 1,
-// 	smoothTouch: 0,
-// 	ignoreMobileResize: true, // how long (in seconds) it takes to "catch up" to the native scroll position
-// 	// effects: true, // looks for data-speed and data-lag attributes on elements
-// });
+// create the scrollSmoother before your scrollTriggers
+let smoother = ScrollSmoother.create({
+	wrapper: ".wrapper",
+	content: ".content",
+	// onStop: ScrollTrigger.refresh(),
+	normalizeScroll: true,
+	smooth: 1,
+	smoothTouch: false,
+	ignoreMobileResize: true, // how long (in seconds) it takes to "catch up" to the native scroll position
+	// effects: true, // looks for data-speed and data-lag attributes on elements
+});
 // ***** CHECKBOX ***** //
 
 const menuToggle = document.getElementById("toggle-nav-id");
@@ -148,45 +148,45 @@ projTL.to(".project-gallery", {
 	},
 });
 
-// // *** compensating for the clicks scrollSmoother prevents since it's transformed , with an animation on click *** //
-// let currentURL = window.location.pathname;
-// let smoothAnchorLink = (selector) => {
-// 	gsap.to(smoother, {
-// 		scrollTop: smoother.offset(selector, "top top"),
-// 		duration: 1,
-// 		ease: "power3.out",
-// 	});
-// };
-// let whenFromSubd = (anchorLink, selector) => {
-// 	if (window.location.href.indexOf(anchorLink) > -1) {
-// 		smoothAnchorLink(selector);
-// 	}
-// };
-// const findsLink = document.querySelector("[href='/#finds']");
-// const workLink = document.querySelector("[href='/#work']");
+// *** compensating for the clicks scrollSmoother prevents since it's transformed , with an animation on click *** //
+let currentURL = window.location.pathname;
+let smoothAnchorLink = (selector) => {
+	gsap.to(smoother, {
+		scrollTop: smoother.offset(selector, "top top"),
+		duration: 1,
+		ease: "power3.out",
+	});
+};
+let whenFromSubd = (anchorLink, selector) => {
+	if (window.location.href.indexOf(anchorLink) > -1) {
+		smoothAnchorLink(selector);
+	}
+};
+const findsLink = document.querySelector("[href='/#finds']");
+const workLink = document.querySelector("[href='/#work']");
 
-// let workNav = () => {
-// 	workLink.addEventListener("click", (e) => {
-// 		if (currentURL == "/") {
-// 			e.preventDefault();
-// 		}
-// 		smoothAnchorLink(".work");
-// 	});
-// };
+let workNav = () => {
+	workLink.addEventListener("click", (e) => {
+		if (currentURL == "/") {
+			e.preventDefault();
+		}
+		smoothAnchorLink(".work");
+	});
+};
 
-// let findNav = () => {
-// 	findsLink.addEventListener("click", (e) => {
-// 		if (currentURL == "/") {
-// 			e.preventDefault();
-// 		}
-// 		smoothAnchorLink(".finds");
-// 	});
-// };
+let findNav = () => {
+	findsLink.addEventListener("click", (e) => {
+		if (currentURL == "/") {
+			e.preventDefault();
+		}
+		smoothAnchorLink(".finds");
+	});
+};
 
-// whenFromSubd("/#work", ".work");
-// whenFromSubd("/#finds", ".finds");
-// workNav();
-// findNav();
+whenFromSubd("/#work", ".work");
+whenFromSubd("/#finds", ".finds");
+workNav();
+findNav();
 
 // Logo
 if (document.querySelector(".hero-home")) {
@@ -229,12 +229,12 @@ if (document.querySelector(".hero-home")) {
 
 // For Home-page Hero Text
 
-// ScrollTrigger.create({
-// 	trigger: ".hero-home",
-// 	start: "top top",
-// 	pin: true,
-// 	pinSpacing: false,
-// });
+ScrollTrigger.create({
+	trigger: ".hero-home",
+	start: "top top",
+	pin: true,
+	pinSpacing: false,
+});
 
 gsap.to(".hero-text", {
 	y: "16%",
