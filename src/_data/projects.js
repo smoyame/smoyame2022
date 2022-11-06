@@ -1,9 +1,15 @@
 const axios = require("../../node_modules/axios");
+require("dotenv").config();
 
 module.exports = async () => {
 	try {
 		const projGet = await axios.get(
-			"http://192.168.0.121:1337/api/projects?populate[cover][populate]=*,image&populate[outcomes][populate]=*&populate[tags][populate]=discipline"
+			`${process.env.STRAPIAPI}/api/projects?populate[cover][populate]=*,image&populate[outcomes][populate]=*&populate[tags][populate]=discipline`,
+			{
+				headers: {
+					Authorization: `Bearer ${process.env.STRAPIAPI_KEY}`,
+				},
+			}
 		);
 		// axios delivers it as JS object already thank goodness
 

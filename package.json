@@ -24,6 +24,7 @@
 	"dependencies": {
 		"@11ty/eleventy": "^1.0.2",
 		"axios": "^0.27.2",
+		"dotenv": "^16.0.3",
 		"gsap": "npm:@gsap/shockingly@^3.11.3"
 	},
 	"devDependencies": {
