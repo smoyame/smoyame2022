@@ -3,7 +3,7 @@ const axios = require("../../node_modules/axios");
 module.exports = async () => {
 	try {
 		const findGet = await axios.get(
-			"http://localhost:1337/api/finds?populate=*"
+			"http://192.168.0.121:1337/api/finds?populate=*"
 		);
 		// axios delivers it as JS object already thank goodness
 

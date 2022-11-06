@@ -149,6 +149,10 @@ select {
   font-size: var(--fontsize-base);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 ::-moz-selection {
   background-color: var(--foreground-color);
   color: var(--background-color);
@@ -191,21 +195,15 @@ body {
   }
 }
 body::after {
-  content: "";
   display: block;
-  z-index: 999999;
   position: fixed;
   top: 0;
   left: 0;
-  height: 100%;
-  width: 100%;
+  height: 1px;
+  width: 1px;
   transform-origin: 50% 50%;
-  scale: 1.19;
+  rotate: 1deg;
   pointer-events: none;
-  background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MDAiIGhlaWdodD0iNTAwIj4KICAgIDxmaWx0ZXIgaWQ9Im5vaXNlIiB4PSIwIiB5PSIwIj4KICAgICAgPGZlVHVyYnVsZW5jZSB0eXBlPSJmcmFjdGFsTm9pc2UiIGJhc2VGcmVxdWVuY3k9IjAuNjUiIG51bU9jdGF2ZXM9IjMiIHN0aXRjaFRpbGVzPSJzdGl0Y2giLz4KICAgICAgPGZlQmxlbmQgbW9kZT0ic2NyZWVuIi8+CiAgICA8L2ZpbHRlcj4KICAgIDxyZWN0IHdpZHRoPSI1MDAiIGhlaWdodD0iNTAwIiBmaWx0ZXI9InVybCgjbm9pc2UpIiBvcGFjaXR5PSIwLjUiLz4KPC9zdmc+");
-  mix-blend-mode: color-burn;
-  filter: grayscale(90%) contrast(190%) brightness(100%);
-  opacity: 0.6;
 }
 
 .header,
@@ -220,6 +218,18 @@ a {
 
 p {
   line-height: 1.5;
+}
+
+p,
+.nav-item a,
+.logotype,
+.job-title,
+.about-linkout {
+  font-size: 1.0625rem;
+}
+
+.footer-form-label p {
+  font-size: 1rem;
 }
 
 p:not([class], .footer-form-label ~ p) {
@@ -591,7 +601,7 @@ body.no-scroll .toggle-checkbox:checked ~ .nav-wrapper .nav-item a {
 .nav-item a {
   pointer-events: auto;
   display: block;
-  padding-block: 1rem 0.65rem;
+  padding-block: 0.85rem 0.5rem;
   color: var(--foreground-color);
   border-bottom: 2px solid var(--foreground-color);
   transition: padding 100ms ease-out, backgound-color 100ms ease-out;
@@ -1079,6 +1089,10 @@ h2 {
   border-radius: 0.5rem;
 }
 
+.p-outcome-img-wrapper {
+  margin-bottom: 1em;
+}
+
 .p-more {
   display: none;
   text-align: center;
@@ -1249,9 +1263,7 @@ body:not(.no-scroll) .toggle-checkbox:not(:checked) ~ .nav-wrapper .nav-item a {
     color: var(--foreground-color);
     border-bottom: none;
     transition: padding 100ms ease-out, backgound-color 100ms ease-out;
-  }
-  .nav-item a {
-    padding-bottom: 0.28rem;
+    padding-bottom: 0.24rem;
     display: flex;
     justify-content: space-between;
   }
@@ -1282,7 +1294,7 @@ body:not(.no-scroll) .toggle-checkbox:not(:checked) ~ .nav-wrapper .nav-item a {
     opacity: 1;
   }
   .nav-item:not(:first-of-type) a {
-    padding-top: 0.475rem;
+    padding-top: 0.35rem;
     border-top: 2px solid var(--foreground-color);
   }
   .nav-item:last-of-type a {

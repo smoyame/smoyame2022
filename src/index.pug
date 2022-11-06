@@ -17,19 +17,20 @@ section.section.work#work
 		-		for (let j=0; j < givenOrder.length; j++) {
 		-			let givenProj = givenOrder[j];
 		-			if (givenProj.title == wantedProj.title) {
+		- 			let projCardCover = givenProj.cover.image.data.attributes
 						.project-card 
 							a.proj-card-text(href=`projects/${wantedProj.slug}` data-cursor-class="arrow")
 								h3.proj-card-title #{wantedProj.title}
 							.proj-card-tag 
 								p #{givenProj.tags.data[0].attributes.discipline}
 							a.proj-card-img-wrapper(href=`projects/${wantedProj.slug}` data-cursor-class="arrow") 
-								img.proj-card-img(src="/_assets/medium_valivaryus_splash_01_5c339485d5.png", alt="Photo", srcset="")
+								img.proj-card-img(src=`/_assets/${projCardCover.hash}${projCardCover.ext}` alt="Photo" srcset=`/_assets/${projCardCover.formats.small.hash}${projCardCover.formats.small.ext} 500w, /_assets/${projCardCover.formats.medium.hash}${projCardCover.formats.medium.ext} 1000w, /_assets/${projCardCover.formats.large.hash}${projCardCover.formats.large.ext} 2000w`)
 		-			}
 		-		}
 		-	}
 //- include _includes/_sketchbook.pug
 section.section.about
-	h2 About Me
+	h2 About Me 
 	.about-wrapper
 		.about-id-info 
 			p.about-name Sami <span class="about-name-last">Moya Medina</span> 

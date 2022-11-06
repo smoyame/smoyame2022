@@ -15,13 +15,12 @@ eleventyComputed:
 - let next;
 - for (let i=0; i<orderedProjects.length; i++) {
 -   let chosenProj = orderedProjects[i].item.data.attributes;
--   if (p.title == chosenProj.title) {
+-   if (p.title == chosenProj.title) { 
 -     prevProj = orderedProjects[i-1];
 -     nextProj = orderedProjects[i+1];
 -   }
 - }
-- let coverImgFilename = `${p.cover.image.data.attributes.hash}${p.cover.image.data.attributes.ext}`
-- let coverImgAlt = `${p.cover.image.data.attributes.alternativeText}`
+- let coverImg = p.cover.image.data.attributes
 - let projTags = p.tags.data
 section.section.hero-project
   h2.p-hero-title #{p.title}
@@ -31,7 +30,7 @@ section.section.hero-project
       span.p-tag #{discipline}
 section.section.p-cover 
   .p-cover-img-wrapper
-    img.p-cover-img(src=`/_assets/${coverImgFilename}` alt=`${coverImgAlt}`) 
+    img.p-cover-img(src=`/_assets/${coverImg.hash}${coverImg.ext}` alt=`${coverImg.alternativeText}` srcset=`/_assets/${coverImg.formats.small.hash}${coverImg.formats.small.ext} 500w, /_assets/${coverImg.formats.medium.hash}${coverImg.formats.medium.ext} 800w, /_assets/${coverImg.formats.large.hash}${coverImg.formats.large.ext} 1100w`) 
 section.section.p-text
   h3.p-prompt #{p.prompt}
   .p-summary!=`${p.summary}`
