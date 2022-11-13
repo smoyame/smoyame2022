@@ -120,11 +120,11 @@ select {
   --main-bright: hsla(238, 42%, 88%);
   --main-pensive: hsla(176, 69%, 18%);
   --main-poder: hsla(216, 100%, 33%);
-  --main-vibing: hsla(268, 95%, 77%);
+  --main-vibing: hsla(282, 95%, 77%);
   --main-alertness: hsla(3, 100%, 69%);
   --main-disfruta: hsla(335, 100%, 73%);
   --main-zesty: hsla(48, 100%, 72%);
-  --main-dark: hsla(240, 8%, 22%);
+  --main-dark: hsla(240, 8%, 14%);
   --foreground-color: var(--main-bright);
   --background-color: var(--main-dark);
   --fontsize-base: clamp(16.5px, calc(8px + 1.5vw), 23px);
@@ -228,7 +228,7 @@ p {
 
 p,
 .nav-item a,
-.logotype,
+.logotype a,
 .job-title,
 .about-linkout {
   font-size: 1.0625rem;
@@ -429,6 +429,7 @@ p:not([class], .footer-form-label ~ p) {
 .logotype a {
   color: var(--foreground-color);
   font-weight: 600;
+  mix-blend-mode: difference;
 }
 
 .nav {
@@ -654,8 +655,8 @@ h2 {
 
 .job-title {
   grid-column: 1/-1;
-  margin-left: clamp(0%, 54vw - 16rem, 25.25%);
-  margin-top: var(--unit);
+  padding-left: clamp(0%, 65vw - 16rem, 50.25%);
+  padding-top: calc(var(--unit) * 1.02);
   text-transform: uppercase;
   line-height: 1rem;
   letter-spacing: 0.035em;
@@ -667,7 +668,7 @@ h2 {
   letter-spacing: -0.0125em;
   line-height: 1.1em;
   font-family: var(--primary-font);
-  font-weight: 300;
+  font-weight: 600;
   text-transform: uppercase;
   margin-left: clamp(0%, 54vw - 16rem, 25.25%);
   grid-column: 1/-1;
@@ -1283,7 +1284,7 @@ body:not(.no-scroll) .toggle-checkbox:not(:checked) ~ .nav-wrapper .nav-item a {
     font-weight: 300;
     line-height: 0.7125;
     position: relative;
-    top: -0.0125rem;
+    top: 0.065rem;
     transition: opacity 100ms var(--primary-ease);
   }
   .nav-item:first-of-type a::after,
