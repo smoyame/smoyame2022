@@ -601,8 +601,8 @@ h2 {
 // ** HOME - PROJECT ** //
 
 .work {
-	background: var(--foreground-color);
-	color: var(--background-color);
+	// background: var(--foreground-color);
+	// color: var(--background-color);
 	scroll-margin-top: 0;
 	padding-inline: 0;
 	overflow-x: hidden;
@@ -673,7 +673,7 @@ h2 {
 .proj-card-tag::before {
 	content: "";
 	display: block;
-	border-top: 2px solid var(--background-color);
+	border-top: 2px solid var(--foreground-color);
 	width: 4rem;
 	margin-bottom: clamp(0.75rem, 1.5vw, 4.5rem);
 }
@@ -998,13 +998,19 @@ h2 {
 	margin-bottom: calc(2 * clamp(0.75rem, 1.5vw, 4.5rem));
 	min-width: 65.5%;
 	// width: clamp(0%, calc(82vw - 15rem), 100%);
-	margin-inline: clamp(0%, calc(31vw - 10rem), 17%);
+	// margin-inline: clamp(0%, calc(31vw - 10rem), 17%);
+	margin-left: clamp(0%, calc(2 * calc(31vw - 10rem)), calc(2 * 17%));
 	// margin-inline: auto;
 }
 
 .p-summary {
-	margin-inline: clamp(0%, calc(59.95vw - 15rem), 42.575%)
-		clamp(0%, calc(54vw - 15rem), 25.5%);
+	// margin-inline: clamp(
+	// 		0%,
+	// 		calc((59.95vw - 15rem) + calc(31vw - 10rem)),
+	// 		calc(42.575% + 17%)
+	// 	)
+	// 	clamp(0%, calc(0.5 * calc(31vw - 10rem)), calc(25.5% - 17%));
+	margin-inline: clamp(0%, calc(2 * calc(31vw - 10rem)), calc(2 * 17%));
 }
 
 .p-summary::before {
@@ -1150,9 +1156,10 @@ h2 {
 	.header {
 		width: 100%;
 		position: fixed;
-		display: flex;
-		justify-content: space-between;
-		align-items: baseline;
+		//
+		// display: flex;
+		// justify-content: space-between;
+		// align-items: baseline;
 	}
 
 	.logotype {
@@ -1171,10 +1178,11 @@ h2 {
 		pointer-events: auto;
 		/* Lined List */
 		width: 14.8%;
-		min-width: 14ch;
+		min-width: 15ch;
 	}
 
 	.nav-wrapper {
+		margin-top: 0.25rem;
 		margin-bottom: 0;
 	}
 
@@ -1242,8 +1250,9 @@ h2 {
 		border-bottom: none;
 		transition: padding 100ms ease-out, backgound-color 100ms ease-out;
 		padding-bottom: 0.24rem;
-		display: flex;
-		justify-content: space-between;
+		// set icon on hover to the end
+		// display: flex;
+		// justify-content: space-between;
 	}
 
 	.nav-item a::after {
@@ -1275,11 +1284,11 @@ h2 {
 		opacity: 1;
 	}
 	.nav-item:not(:first-of-type) a {
-		padding-top: 0.35rem;
-		border-top: 2px solid var(--foreground-color);
+		// padding-top: 0.35rem;
+		// border-top: 2px solid var(--foreground-color);
 	}
 	.nav-item:last-of-type a {
-		border-bottom: 2px solid var(--foreground-color);
+		// border-bottom: 2px solid var(--foreground-color);
 	}
 
 	// ***** Main Content ***** //
