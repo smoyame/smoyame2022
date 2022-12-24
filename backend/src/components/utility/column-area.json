@@ -2,13 +2,14 @@
   "collectionName": "components_utility_column_areas",
   "info": {
     "displayName": "Column Area",
-    "icon": "arrows-alt-h"
+    "icon": "arrows-alt-h",
+    "description": ""
   },
   "options": {},
   "attributes": {
     "Start": {
       "type": "integer",
-      "max": 6,
+      "max": 9,
       "min": 1,
       "required": false,
       "default": 1

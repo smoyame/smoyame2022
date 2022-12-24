@@ -9,17 +9,15 @@ html(lang="en")
 		noscript
 			style. 
 				.container, #cursor {
-						visibility: visible; 
+						visibility: visible;  
 				}
 	body#body(class=`${pageColorChoice}`)
 		.container
 			include _header.pug
-			.wrapper
-				.content
-					main.main 
-						!=content
-					include _footer.pug
+			main.main 
+				!=content
+			include _footer.pug
 		#cursor(aria-hidden="true" data-scroll-sticky)
 			.cursor__circle(aria-hidden="true")
-		script(src="/bundle.js")
+		script(src="/bundle.js" defer)
 		

@@ -13333,6 +13333,7 @@ _node_modules_gsap__WEBPACK_IMPORTED_MODULE_0__.gsap.registerPlugin(
 );
 
 _node_modules_gsap__WEBPACK_IMPORTED_MODULE_0__.gsap.from(".container", { ease: "linear", autoAlpha: 0 });
+// gsap.from("#cursor", { ease: "linear", autoAlpha: 0 });
 
 // create the scrollSmoother before your scrollTriggers
 // let smoother = ScrollSmoother.create({
@@ -13349,6 +13350,10 @@ _node_modules_gsap__WEBPACK_IMPORTED_MODULE_0__.gsap.from(".container", { ease: 
 
 const menuToggle = document.getElementById("toggle-nav-id");
 const bodyElement = document.getElementById("body");
+_node_modules_gsap_CustomEase__WEBPACK_IMPORTED_MODULE_4__.CustomEase.create(
+	"growSoft",
+	"M0,0 C0,0.604 0.161,0.752 0.214,0.804 0.265,0.855 0.396,1 1,1 "
+);
 
 // freeze body content behind nav so it doesn't scroll while interacting with links //
 let bodyNoScroll = () => {
@@ -13443,7 +13448,59 @@ if (windowQuery) {
 		});
 	});
 }
+
+// * Nav disappear on scroll * //
+// set up for mobile first here
+let scrollPos = 0;
+let seeSetScrollPos = () => {
+	// detects new state and compares it with the new one
+	if (
+		document.body.getBoundingClientRect().top > scrollPos ||
+		scrollPos > -400
+	) {
+		document.getElementById("logotype").classList.remove("logotype-leave");
+	} else {
+		document.getElementById("logotype").classList.add("logotype-leave");
+	}
+	// saves the new position after animation/effect for next iteration.
+	scrollPos = document.body.getBoundingClientRect().top;
+	console.log(scrollPos);
+};
+window.addEventListener("scroll", seeSetScrollPos);
+
 // ***** GSAP ***** //
+
+// utilities
+// let yDifference = "-10vh";
+let fadeUpIn = (elementSelector, yDifference) => {
+	let elementQuery = document.querySelector(elementSelector);
+	if (elementQuery !== null) {
+		_node_modules_gsap__WEBPACK_IMPORTED_MODULE_0__.gsap.from(elementSelector, {
+			duration: 1,
+			delay: 0,
+			opacity: 0,
+			ease: "growSoft",
+			y: yDifference,
+		});
+	}
+};
+
+fadeUpIn(".hero-text", "30vh");
+fadeUpIn(".job-title", "1rem");
+
+//background icon passive move up
+
+// gsap.to(".background-icon", {
+// 	yPercent: "-38.5",
+// 	scrollTrigger: {
+// 		trigger: ".hero-home",
+// 		start: "top -5%",
+// 		// markers: true,
+// 		endTrigger: ".project-gallery",
+// 		end: "top 25%",
+// 		scrub: true,
+// 	},
+// });
 
 // Proj Gallery, horizontal scroll
 
