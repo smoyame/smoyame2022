@@ -63,10 +63,10 @@ let closeMenu = () => {
 };
 closeMenu();
 
-// ***** Cursor ***** //
+// *************** Cursor *************** //
 
 if (windowQuery) {
-	gsap.from("#cursor", { ease: "linear", autoAlpha: 0 });
+	gsap.from("#cursor", { ease: "linear", autoAlpha: 0, delay: 0.5 });
 	// ▶ cojea gabriel - thanks a bunch dude - cursor ◀
 	const cursor = document.querySelector("#cursor");
 	const cursorCircle = cursor.querySelector(".cursor__circle");
@@ -131,7 +131,7 @@ if (windowQuery) {
 	});
 }
 
-// * Nav disappear on scroll * //
+// *************** Nav *************** //
 // set up for mobile first here
 let scrollPos = 0;
 let seeSetScrollPos = () => {
@@ -146,11 +146,25 @@ let seeSetScrollPos = () => {
 	}
 	// saves the new position after animation/effect for next iteration.
 	scrollPos = document.body.getBoundingClientRect().top;
-	console.log(scrollPos);
+	// console.log(scrollPos);
 };
 window.addEventListener("scroll", seeSetScrollPos);
 
-// ***** GSAP ***** //
+// *************** SVGs *************** //
+
+// let assignAllLengths = () => {
+// 	let lines = document.querySelectorAll(".sketchbook-line");
+// 	let singleVw = 100 / window.innerWidth;
+// 	const assignLength = (instance) => {
+// 		let length = instance.getTotalLength();
+// 		instance.style.cssText += `--array: ${length + length * 10 * singleVw}`;
+// 	};
+
+// 	lines.forEach(assignLength);
+// };
+
+// window.resize = assignAllLengths();
+// *************** GSAP *************** //
 
 // utilities
 // let yDifference = "-10vh";
@@ -169,6 +183,244 @@ let fadeUpIn = (elementSelector, yDifference) => {
 
 fadeUpIn(".hero-text", "30vh");
 fadeUpIn(".job-title", "1rem");
+
+/////////////////////////////////////////////////////
+/////////////////////////////////////////////////////
+/**
+ * demo.js
+ * http://www.codrops.com
+ *
+ * Licensed under the MIT license.
+ * http://www.opensource.org/licenses/mit-license.php
+ *
+ * Copyright 2019, Codrops
+ * http://www.codrops.com
+ */
+
+{
+	// body element
+	const body = document.body;
+
+	// helper functions
+	const MathUtils = {
+		// linear interpolation
+		lerp: (a, b, n) => (1 - n) * a + n * b,
+		// distance between two points
+		distance: (x1, y1, x2, y2) => Math.hypot(x2 - x1, y2 - y1),
+	};
+
+	// get the mouse position
+	const getMousePos = (ev) => {
+		let posx = 0;
+		let posy = 0;
+		if (!ev) ev = window.event;
+		if (ev.pageX || ev.pageY) {
+			posx = ev.pageX;
+			posy = ev.pageY;
+		} else if (ev.clientX || ev.clientY) {
+			posx = ev.clientX + body.scrollLeft + docEl.scrollLeft;
+			posy = ev.clientY + body.scrollTop + docEl.scrollTop;
+		}
+		hoverBanner = ev.target == banner;
+		return { x: posx, y: posy };
+	};
+
+	// mousePos: current mouse position
+	// cacheMousePos: previous mouse position
+	// lastMousePos: last last recorded mouse position (at the time the last image was shown)
+	let mousePos = { x: 0, y: 0 };
+	let lastMousePos = { x: 0, y: 0 };
+	let cacheMousePos = { x: 0, y: 0 };
+	let hoverBanner = false;
+
+	// Listen for sketch banner ONLY
+	let banner = document.querySelector(".sketchbook-banner");
+
+	// update the mouse position
+	window.addEventListener("mousemove", (ev) => (mousePos = getMousePos(ev)));
+
+	// gets the distance from the current mouse position to the last recorded mouse position
+	const getMouseDistance = () =>
+		MathUtils.distance(mousePos.x, mousePos.y, lastMousePos.x, lastMousePos.y);
+
+	class Image {
+		constructor(el) {
+			this.DOM = { el: el };
+			// image deafult styles
+			this.defaultStyle = {
+				scale: 1,
+				x: 0,
+				y: 0,
+				opacity: 0,
+			};
+			// get sizes/position
+			this.getRect();
+			// init/bind events
+			this.initEvents();
+		}
+		initEvents() {
+			// on resize get updated sizes/position
+			window.addEventListener("resize", () => this.resize());
+		}
+		resize() {
+			// reset styles
+			gsap.set(this.DOM.el, this.defaultStyle);
+			// get sizes/position
+			this.getRect();
+		}
+		getRect() {
+			this.rect = this.DOM.el.getBoundingClientRect();
+		}
+		isActive() {
+			// check if image is animating or if it's visible
+			return gsap.isTweening(this.DOM.el) || this.DOM.el.style.opacity != 0;
+		}
+	}
+
+	class ImageTrail {
+		constructor() {
+			// images container
+			this.DOM = { content: document.querySelector(".main") };
+			// array of Image objs, one per image element
+			this.images = [];
+			[...this.DOM.content.querySelectorAll(".sketch-preview")].forEach((img) =>
+				this.images.push(new Image(img))
+			);
+			// total number of images
+			this.imagesTotal = this.images.length;
+			// upcoming image index
+			this.imgPosition = 0;
+			// zIndex value to apply to the upcoming image
+			this.zIndexVal = 1;
+			// mouse distance required to show the next image
+			this.threshold = 100;
+			// render the images
+			requestAnimationFrame(() => this.render());
+		}
+		render() {
+			// get distance between the current mouse position and the position of the previous image
+			let distance = getMouseDistance();
+			// cache previous mouse position
+			cacheMousePos.x = MathUtils.lerp(
+				cacheMousePos.x || mousePos.x,
+				mousePos.x,
+				0.1
+			);
+			cacheMousePos.y = MathUtils.lerp(
+				cacheMousePos.y || mousePos.y,
+				mousePos.y,
+				0.1
+			);
+
+			// if the mouse moved more than [this.threshold] then show the next image
+			if (distance > this.threshold) {
+				this.showNextImage();
+
+				++this.zIndexVal;
+				this.imgPosition =
+					this.imgPosition < this.imagesTotal - 1 ? this.imgPosition + 1 : 0;
+
+				lastMousePos = mousePos;
+			}
+
+			// check when mousemove stops and all images are inactive (not visible and not animating)
+			let isIdle = true;
+			for (let img of this.images) {
+				if (img.isActive()) {
+					isIdle = false;
+					break;
+				}
+			}
+			// reset z-index initial value
+			if (isIdle && this.zIndexVal !== 1) {
+				this.zIndexVal = 1;
+			}
+
+			// loop..
+			requestAnimationFrame(() => this.render());
+		}
+		showNextImage() {
+			// show image at position [this.imgPosition]
+			const img = this.images[this.imgPosition];
+			// kill any tween on the image
+			let timeline = gsap.timeline();
+
+			//for now
+			let mqMatch = window.matchMedia("(min-width:980px)");
+			if (mqMatch.matches) {
+				if (hoverBanner) {
+					gsap.killTweensOf(img.DOM.el);
+					timeline = timeline
+						// show the image
+						.set(
+							img.DOM.el,
+							{
+								startAt: { opacity: 1, scale: 0.6 },
+								opacity: 1,
+								scale: 0.6,
+								zIndex: this.zIndexVal,
+								x: cacheMousePos.x - img.rect.width / 2,
+								y: cacheMousePos.y - img.rect.height / 2,
+							},
+							0
+						)
+						// animate position
+						.to(
+							img.DOM.el,
+							0.9,
+							{
+								ease: "expo.out",
+								x: mousePos.x - img.rect.width / 2,
+								y: mousePos.y - img.rect.height / 2,
+							},
+							0
+						);
+				}
+				// then make it disappear
+				timeline
+					.to(
+						img.DOM.el,
+						0.9,
+						{
+							ease: "power1.out",
+							opacity: 0,
+						},
+						0.3
+					)
+					// scale down the image
+					.to(
+						img.DOM.el,
+						1,
+						{
+							ease: "power4.in",
+							scale: 0.5,
+						},
+						0.4
+					);
+			}
+		}
+	}
+
+	/***********************************/
+	/********** Preload stuff **********/
+
+	// Preload images
+	const preloadImages = () => {
+		return new Promise((resolve, reject) => {
+			imagesLoaded(document.querySelectorAll(".sketch-preview"), resolve);
+		});
+	};
+
+	// And then..
+	preloadImages().then(() => {
+		// Remove the loader
+		document.body.classList.remove("loading");
+		new ImageTrail();
+	});
+}
+
+/////////////////////////////////////////////////////
+/////////////////////////////////////////////////////
 
 //background icon passive move up
 

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" width="163.34" height="171.97" viewBox="0 0 163.34 171.97">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #231f20;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+    </style>
+  </defs>
+  <g id="Top_Right" data-name="Top Right">
+    <path id="star7p" class="cls-1" d="m73.24.5c6.75,47.63.65,91.53-43.76,40.45,20.85,35.27,36.83,59.91-28.99,63.38,63.05-2.99,54.81,46.12,45.98,67.14,14.41-27.49,44.43-52.66,67.27-20.03-14.64-38.03-5.04-46.23,49.09-56.75-59,3.56-37.62-37.73-20.3-59.98C116.86,59.71,94.87,73.4,73.24.5Z"/>
+  </g>
+</svg>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="TopLeft" xmlns="http://www.w3.org/2000/svg" width="139.74" height="128.75" viewBox="0 0 139.74 128.75">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #231f20;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+    </style>
+  </defs>
+  <path id="loop1x" class="cls-1" d="m62.67,116.45c-15.9,23.05-73.77,9.78-59.4-35.1,7.38-23.04,40.58-42.84,64.52-22.59,22.08,18.67-7.78,35.84-16.32,17.09C40.04,50.74,62.24,2.06,121.08,1.15c6.5-.1,12.54.59,17.78,1.6"/>
+</svg>

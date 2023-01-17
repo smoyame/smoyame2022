@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" width="251.46" height="191.97" viewBox="0 0 251.46 191.97">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #231f20;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+    </style>
+  </defs>
+  <g id="TopLeft">
+    <path id="loop1x" class="cls-1" d="m97.92,177.88c-31.11,34.56-123.55.36-90.31-70.47,17.07-36.36,77.49-62.15,112.59-23.71,32.37,35.46-20.09,57.34-30.43,24.73-8.61-27.13,8.69-69.13,49.53-92.22C176.6-4.87,229.46-1.18,250.96,6.8"/>
+  </g>
+</svg>

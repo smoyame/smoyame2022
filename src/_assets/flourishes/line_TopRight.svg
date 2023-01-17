@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="TopRight" xmlns="http://www.w3.org/2000/svg" width="98.68" height="105.06" viewBox="0 0 98.68 105.06">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #231f20;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+    </style>
+  </defs>
+  <path id="star7p" class="cls-1" d="m40.88.89c2.94,32.46,4.17,56.29-24.5,25.55,8.42,12.6,28.53,35.77-15.39,39.67,36.56.99,34.45,23.53,29.57,38.29,11.57-18.47,25.72-34.92,39.93-13.75-10.81-23.76-1.88-29.07,27.39-36.06-34.51,4.21-30.82-9.58-14.18-34.71C57.61,39.02,57.47,43.08,40.88.89Z"/>
+</svg>
